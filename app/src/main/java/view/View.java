@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
-import java.awt.BorderLayout;
 import javax.swing.JTextField;
 
 public class View {

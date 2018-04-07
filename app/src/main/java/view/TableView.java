@@ -1,9 +1,6 @@
 package view;
 
 import java.awt.EventQueue;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;

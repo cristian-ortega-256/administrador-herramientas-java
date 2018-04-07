@@ -8,10 +8,8 @@ import Entities.Tool;
 import Entities.ToolType;
 import Entities.Worker;
 import model.LoanSystem;
-import model.Model;
 import view.View;
 import view.AdapterUI;
-import view.TableView;
 
 public class Controller implements ActionListener{
 	

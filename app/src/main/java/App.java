@@ -1,6 +1,5 @@
 import controller.Controller;
 import model.LoanSystem;
-import model.Model;
 import view.View;
 
 public class App {
