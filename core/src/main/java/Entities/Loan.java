@@ -2,6 +2,9 @@ package Entities;
 
 import java.util.Date;
 
+import Entities.Tool;
+import Entities.Worker;
+
 public class Loan {
 	
 	//private int id;

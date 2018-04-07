@@ -20,11 +20,10 @@ public class LoanSystem extends Observable {
 	public void generateLoan(Tool tool, Worker worker, Date expirationDate) {
 		Loan _loan = new Loan(tool, worker, expirationDate);
 		this.addLoan(_loan);
-		//this.notifyAllObservers(_loan);
-		this.notifyAllObservers("Loan created");
+		this.notifyAllObservers(_loan);
 	}
 	
-	private void notifyAllObservers(String loan) {
+	private void notifyAllObservers(Loan loan) {
 		setChanged();
         notifyObservers(loan);
 	}

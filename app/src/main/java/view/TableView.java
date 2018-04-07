@@ -8,7 +8,7 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class TableView implements Observer{
+public class TableView{
 
 	private JFrame frame;
 	private JLabel textField;
@@ -49,11 +49,11 @@ public class TableView implements Observer{
 		frame.getContentPane().add(textField);
 	}
 	
-	@Override // Observer interface's implemented method
-    public void update(Observable o, Object data) {
-		//System.out.println(data);
-		this.textField.setText(data.toString());
-    }
+//	@Override // Observer interface's implemented method
+//    public void update(Observable o, Object data) {
+//		//System.out.println(data);
+//		this.textField.setText(data.toString());
+//    }
 	
 	public JLabel getTextField() {
 		return textField;

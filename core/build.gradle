@@ -1,0 +1,19 @@
+plugins {
+    // Apply the java plugin to add support for Java
+    id 'java'
+
+    id "com.palantir.jacoco-coverage" version "0.4.0"
+}
+
+dependencies {
+    // This dependency is found on compile classpath of this component and consumers.
+    compile 'com.google.guava:guava:23.0'
+
+    // Use JUnit test framework
+    testCompile 'junit:junit:4.12'
+}
+
+jacoco {
+    toolVersion = "0.8.0"
+    reportsDir = file("$buildDir/JacocoReports")
+}
