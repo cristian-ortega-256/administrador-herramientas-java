@@ -10,6 +10,7 @@ import Entities.Tool;
 import Entities.ToolType;
 import Entities.Worker;
 import model.LoanSystem;
+import model.ToolSystem;
 import model.WorkerSystem;
 import view.View;
 import view.AdapterUI;
@@ -20,6 +21,7 @@ public class Controller implements ActionListener{
 	private AdapterUI adapterUI;
 	private LoanSystem loanSystem;
 	private WorkerSystem workerSystem;
+	private ToolSystem toolSystem;
 	
 	public Controller(View view, LoanSystem loanSystem) {
 		this.view = view;
@@ -29,6 +31,7 @@ public class Controller implements ActionListener{
 		this.loanSystem.addObserver(this.adapterUI);
 		
 		this.workerSystem = new WorkerSystem();
+		this.toolSystem = new ToolSystem();
 		
 		this.view.getBtnCreateLoan().addActionListener(this);
 	}
@@ -36,6 +39,8 @@ public class Controller implements ActionListener{
 	public void initialize() {
 		this.view.getCbWorkers()
 			.setModel(new DefaultComboBoxModel(this.workerSystem.getWorkers().toArray()));
+		this.view.getCbTools()
+			.setModel(new DefaultComboBoxModel(this.toolSystem.getTools().toArray()));
 		this.view.show();
 		this.adapterUI.show();
 	}
@@ -43,7 +48,7 @@ public class Controller implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == this.view.getBtnCreateLoan()) {
-			Tool tool = new Tool("TestTaladro", ToolType.Taladro, false);
+			Tool tool = new Tool("TestTaladro", ToolType.Taladro);
 			Worker worker = new Worker("Goku");
 			this.loanSystem.generateLoan(tool, worker);
 		}

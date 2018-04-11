@@ -58,6 +58,10 @@ public class View {
 		cbWorkers.setBounds(43, 37, 156, 30);
 		frame.getContentPane().add(cbWorkers);
 		
+		cbTools = new JComboBox<Tool>();
+		cbTools.setBounds(43, 80, 156, 30);
+		frame.getContentPane().add(cbTools);
+		
 	}
 	
 	public JLabel getLblLoanNumber() {

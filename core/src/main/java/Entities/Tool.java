@@ -4,15 +4,12 @@ import Entities.ToolType;
 
 public class Tool {
 	
-	//private int id;
 	private String name;
 	private ToolType type;
-	private boolean state; // Maybe this is not necessary, talk about this
 	
-	public Tool(String name, ToolType toolType, boolean state) {
+	public Tool(String name, ToolType toolType) {
 		this.name = name;
 		this.type = toolType;
-		this.state = state;
 	}
 
 	public String getName() {
@@ -30,13 +27,10 @@ public class Tool {
 	public void setType(ToolType type) {
 		this.type = type;
 	}
-
-	public boolean isState() {
-		return state;
-	}
-
-	public void setState(boolean state) {
-		this.state = state;
+	
+	@Override
+	public String toString() {
+		return name;
 	}
 	
 }

@@ -9,10 +9,10 @@ public class WorkerSystem {
 	
 	public WorkerSystem() {
 		this.workers = new ArrayList<Worker>();
-		this.populateWorkers();
+		this.populateInternalWorkers();
 	}
 	
-	private void populateWorkers() {
+	private void populateInternalWorkers() {
 		this.workers.add(new Worker("Goku"));
 		this.workers.add(new Worker("Vegeta"));
 		this.workers.add(new Worker("Gohan"));
