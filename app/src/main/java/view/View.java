@@ -13,7 +13,6 @@ import Entities.Worker;
 public class View {
 
 	private JFrame frame;
-	private JLabel lblLoanNumber;
 	private JComboBox<Worker> cbWorkers;
 	private JComboBox<Tool> cbTools;
 	private JButton btnCreateLoan; 
@@ -62,14 +61,6 @@ public class View {
 		cbTools.setBounds(43, 80, 156, 30);
 		frame.getContentPane().add(cbTools);
 		
-	}
-	
-	public JLabel getLblLoanNumber() {
-		return lblLoanNumber;
-	}
-
-	public void setLblLoanNumber(JLabel lblLoanNumber) {
-		this.lblLoanNumber = lblLoanNumber;
 	}
 
 	public JComboBox<Worker> getCbWorkers() {

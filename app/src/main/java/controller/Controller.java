@@ -48,9 +48,8 @@ public class Controller implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == this.view.getBtnCreateLoan()) {
-			Tool tool = new Tool("TestTaladro", ToolType.Taladro);
-			Worker worker = new Worker("Goku");
-			this.loanSystem.generateLoan(tool, worker);
+			this.loanSystem.generateLoan((Tool)this.view.getCbTools().getSelectedItem(), 
+					(Worker)this.view.getCbWorkers().getSelectedItem());
 		}
 	}
 

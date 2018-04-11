@@ -3,12 +3,14 @@ package view;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JList;
+
+import Entities.Loan;
 
 public class TableView{
 
 	private JFrame frame;
-	private JLabel textField;
+	private JList<Loan> listLoan;
 	/**
 	 * Launch the application.
 	 */
@@ -37,21 +39,21 @@ public class TableView{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 150);
+		frame.setBounds(100, 100, 600, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		textField = new JLabel("");
-		textField.setBounds(6, 6, 438, 116);
-		frame.getContentPane().add(textField);
+		this.listLoan = new JList();
+		listLoan.setBounds(0, 0, 600, 600);
+		frame.getContentPane().add(listLoan);
 	}
 	
-	public JLabel getTextField() {
-		return textField;
+	public JList<Loan> getListLoan() {
+		return listLoan;
 	}
 
-	public void setTextField(JLabel textField) {
-		this.textField = textField;
+	public void setListLoan(JList<Loan> listLoan) {
+		this.listLoan = listLoan;
 	}
 
 	public void show() {
