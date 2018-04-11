@@ -12,20 +12,11 @@ public class Loan {
 	private Worker _worker;
 	private Date _creationDate;
 	private Date _expirationDate;
-	private Date _deliverDate;
 	
-	public Loan(Tool tool, Worker worker, Date expirationDate) {
+	public Loan(Tool tool, Worker worker) {
 		this._tool = tool;
 		this._worker = worker;
 		this._creationDate = new Date();
-		this._expirationDate = expirationDate;
-		this._deliverDate = null;
-	}
-	
-	public void closeLoan() {
-		if(this._deliverDate != null)
-			this._deliverDate = new Date();
-		return;
 	}
 
 	public Tool get_tool() {
@@ -58,14 +49,6 @@ public class Loan {
 
 	public void set_expirationDate(Date _expirationDate) {
 		this._expirationDate = _expirationDate;
-	}
-
-	public Date get_deliverDate() {
-		return _deliverDate;
-	}
-
-	public void set_deliverDate(Date _deliverDate) {
-		this._deliverDate = _deliverDate;
 	}
 	
 }

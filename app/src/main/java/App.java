@@ -4,7 +4,7 @@ import view.View;
 
 public class App {
 	public static void main(String[] args) {
-		View view = new View();
+		View view = new View(); 
 		LoanSystem loanSystem = new LoanSystem();
 		Controller controller = new Controller(view, loanSystem);
 		controller.initialize();

@@ -46,12 +46,6 @@ public class TableView{
 		frame.getContentPane().add(textField);
 	}
 	
-//	@Override // Observer interface's implemented method
-//    public void update(Observable o, Object data) {
-//		//System.out.println(data);
-//		this.textField.setText(data.toString());
-//    }
-	
 	public JLabel getTextField() {
 		return textField;
 	}

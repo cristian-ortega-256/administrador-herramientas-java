@@ -2,12 +2,15 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 
 import Entities.Tool;
 import Entities.ToolType;
 import Entities.Worker;
 import model.LoanSystem;
+import model.WorkerSystem;
 import view.View;
 import view.AdapterUI;
 
@@ -16,6 +19,7 @@ public class Controller implements ActionListener{
 	private View view;
 	private AdapterUI adapterUI;
 	private LoanSystem loanSystem;
+	private WorkerSystem workerSystem;
 	
 	public Controller(View view, LoanSystem loanSystem) {
 		this.view = view;
@@ -24,20 +28,24 @@ public class Controller implements ActionListener{
 		this.loanSystem = loanSystem;
 		this.loanSystem.addObserver(this.adapterUI);
 		
-		this.view.getBtnAgregar().addActionListener(this);
+		this.workerSystem = new WorkerSystem();
+		
+		this.view.getBtnCreateLoan().addActionListener(this);
 	}
 	
 	public void initialize() {
+		this.view.getCbWorkers()
+			.setModel(new DefaultComboBoxModel(this.workerSystem.getWorkers().toArray()));
 		this.view.show();
 		this.adapterUI.show();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == this.view.getBtnAgregar()) {
+		if(e.getSource() == this.view.getBtnCreateLoan()) {
 			Tool tool = new Tool("TestTaladro", ToolType.Taladro, false);
 			Worker worker = new Worker("Goku");
-			this.loanSystem.generateLoan(tool, worker, new Date());
+			this.loanSystem.generateLoan(tool, worker);
 		}
 	}
 
