@@ -7,25 +7,25 @@ import Entities.Worker;
 
 public class Loan {
 	
-	//private int id;
+	private int loanNumber;
 	private Tool _tool;
 	private Worker _worker;
 	private Date _creationDate;
 	private Date _expirationDate;
-	private Date _deliverDate;
 	
-	public Loan(Tool tool, Worker worker, Date expirationDate) {
+	public Loan(int loanNumber, Tool tool, Worker worker) {
+		this.loanNumber = loanNumber;
 		this._tool = tool;
 		this._worker = worker;
 		this._creationDate = new Date();
-		this._expirationDate = expirationDate;
-		this._deliverDate = null;
 	}
-	
-	public void closeLoan() {
-		if(this._deliverDate != null)
-			this._deliverDate = new Date();
-		return;
+
+	public int getLoanNumber() {
+		return loanNumber;
+	}
+
+	public void setLoanNumber(int loanNumber) {
+		this.loanNumber = loanNumber;
 	}
 
 	public Tool get_tool() {
@@ -59,13 +59,10 @@ public class Loan {
 	public void set_expirationDate(Date _expirationDate) {
 		this._expirationDate = _expirationDate;
 	}
-
-	public Date get_deliverDate() {
-		return _deliverDate;
-	}
-
-	public void set_deliverDate(Date _deliverDate) {
-		this._deliverDate = _deliverDate;
+	
+	@Override
+	public String toString() {
+		return "Id: " + this.loanNumber + " - Worker: " + this._worker.getName() + " - Tool: " + this._tool.getName();
 	}
 	
 }

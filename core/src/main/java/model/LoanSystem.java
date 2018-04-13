@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Observable;
 
 import Entities.Loan;
@@ -10,22 +9,29 @@ import Entities.Worker;
 
 public class LoanSystem extends Observable {
 	
+	private int loanNumberCounter;
 	private ArrayList<Loan> loans;
 	
 	public LoanSystem() {
 		super();
+		this.loanNumberCounter = 0;
 		this.loans = new ArrayList<Loan>();
 	}
 	
-	public void generateLoan(Tool tool, Worker worker, Date expirationDate) {
-		Loan _loan = new Loan(tool, worker, expirationDate);
+	public void generateLoan(Tool tool, Worker worker) {
+		Loan _loan = new Loan(this.loanNumberCounter,tool, worker);
 		this.addLoan(_loan);
-		this.notifyAllObservers(_loan);
+		this.notifyAllObservers(this.loans);
+		this.incrementLoanNumberCounter();
 	}
 	
-	private void notifyAllObservers(Loan loan) {
+	private void incrementLoanNumberCounter() {
+		++this.loanNumberCounter;
+	}
+	
+	private void notifyAllObservers(ArrayList<Loan> loans) {
 		setChanged();
-        notifyObservers(loan);
+        notifyObservers(loans);
 	}
 	
 	private void addLoan(Loan loan) {
@@ -34,6 +40,14 @@ public class LoanSystem extends Observable {
 
 	public ArrayList<Loan> getLoans() {
 		return loans;
+	}
+
+	public int getLoanNumberCounter() {
+		return loanNumberCounter;
+	}
+
+	public void setLoanNumberCounter(int loanNumberCounter) {
+		this.loanNumberCounter = loanNumberCounter;
 	}
 
 }

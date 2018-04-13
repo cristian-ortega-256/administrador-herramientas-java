@@ -1,7 +1,10 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.DefaultListModel;
 
 import Entities.Loan;
 
@@ -19,8 +22,11 @@ public class AdapterUI implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		Loan loan = (Loan) arg;
-		this.table.getTextField().setText(loan.get_worker().getName());
+		ArrayList<Loan> loans = (ArrayList<Loan>) arg;
+		DefaultListModel listModel = new DefaultListModel();
+		for (Loan eLoan : loans)
+			listModel.addElement(eLoan);
+		this.table.getListLoan().setModel(listModel);
 	}
 	
 }
