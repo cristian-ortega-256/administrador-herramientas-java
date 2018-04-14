@@ -1,11 +1,11 @@
 package Entities;
 
-public class Worker {
+public class Borrower {
 	
 	//private int id;
 	private String name;
 
-	public Worker(String name) {
+	public Borrower(String name) {
 		this.name = name;
 	}
 
@@ -13,9 +13,9 @@ public class Worker {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 
 	@Override
 	public String toString() {

@@ -8,12 +8,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 import Entities.Tool;
-import Entities.Worker;
+import Entities.Borrower;
 
 public class View {
 
 	private JFrame frame;
-	private JComboBox<Worker> cbWorkers;
+	private JComboBox<Borrower> cbWorkers;
 	private JComboBox<Tool> cbTools;
 	private JButton btnCreateLoan; 
 
@@ -53,7 +53,7 @@ public class View {
 		btnCreateLoan.setBounds(168, 177, 117, 29);
 		frame.getContentPane().add(btnCreateLoan);
 		
-		cbWorkers = new JComboBox<Worker>();
+		cbWorkers = new JComboBox<Borrower>();
 		cbWorkers.setBounds(43, 37, 156, 30);
 		frame.getContentPane().add(cbWorkers);
 		
@@ -63,11 +63,11 @@ public class View {
 		
 	}
 
-	public JComboBox<Worker> getCbWorkers() {
+	public JComboBox<Borrower> getCbWorkers() {
 		return cbWorkers;
 	}
 
-	public void setCbWorkers(JComboBox<Worker> cbWorkers) {
+	public void setCbWorkers(JComboBox<Borrower> cbWorkers) {
 		this.cbWorkers = cbWorkers;
 	}
 

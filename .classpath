@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="app/src/main/java"/>
+	<classpathentry kind="src" path="core/src/test/java"/>
 	<classpathentry kind="src" path="core/src/main/java"/>
-	<classpathentry kind="src" path="core/src/test"/>
 	<classpathentry kind="lib" path="core/build/libs/core.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="build/libs/administrador-herramientas-java.jar"/>

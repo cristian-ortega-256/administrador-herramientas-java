@@ -8,39 +8,39 @@ import javax.swing.JComboBox;
 
 import Entities.Tool;
 import Entities.ToolType;
-import Entities.Worker;
+import Entities.Borrower;
+import model.LoanFormViewModel;
 import model.LoanSystem;
 import model.ToolSystem;
-import model.WorkerSystem;
+import model.BorrowerSystem;
 import view.View;
 import view.AdapterUI;
 
-public class Controller implements ActionListener{
+public class LoanController implements ActionListener{
 	
 	private View view;
 	private AdapterUI adapterUI;
-	private LoanSystem loanSystem;
-	private WorkerSystem workerSystem;
-	private ToolSystem toolSystem;
 	
-	public Controller(View view, LoanSystem loanSystem) {
+	private LoanSystem loanSystem;
+	private LoanFormViewModel vm;
+	
+	public LoanController(View view, LoanFormViewModel vm) {
 		this.view = view;
 		this.adapterUI = new AdapterUI();
 		
-		this.loanSystem = loanSystem;
-		this.loanSystem.addObserver(this.adapterUI);
+		this.vm = vm;
 		
-		this.workerSystem = new WorkerSystem();
-		this.toolSystem = new ToolSystem();
+		this.loanSystem = new LoanSystem(this.vm.getAllTools());
+		this.loanSystem.addObserver(this.adapterUI);
 		
 		this.view.getBtnCreateLoan().addActionListener(this);
 	}
 	
 	public void initialize() {
 		this.view.getCbWorkers()
-			.setModel(new DefaultComboBoxModel(this.workerSystem.getWorkers().toArray()));
+			.setModel(new DefaultComboBoxModel(this.vm.getAllBorrowers().toArray()));
 		this.view.getCbTools()
-			.setModel(new DefaultComboBoxModel(this.toolSystem.getTools().toArray()));
+			.setModel(new DefaultComboBoxModel(this.vm.getAllTools().toArray()));
 		this.view.show();
 		this.adapterUI.show();
 	}
@@ -48,8 +48,9 @@ public class Controller implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == this.view.getBtnCreateLoan()) {
-			this.loanSystem.generateLoan((Tool)this.view.getCbTools().getSelectedItem(), 
-					(Worker)this.view.getCbWorkers().getSelectedItem());
+			Tool loanTool = (Tool)this.view.getCbTools().getSelectedItem();
+			Borrower loanWorker =  (Borrower)this.view.getCbWorkers().getSelectedItem();
+			this.loanSystem.checkLoanGeneration(loanTool, loanWorker);
 		}
 	}
 
