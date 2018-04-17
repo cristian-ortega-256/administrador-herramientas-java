@@ -22,10 +22,9 @@ public class AdapterUI implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		ArrayList<Loan> loans = (ArrayList<Loan>) arg;
+		Loan eLoan = (Loan) arg;
 		DefaultListModel listModel = new DefaultListModel();
-		for (Loan eLoan : loans)
-			listModel.addElement(eLoan);
+		listModel.addElement(eLoan);
 		this.table.getListLoan().setModel(listModel);
 	}
 	
