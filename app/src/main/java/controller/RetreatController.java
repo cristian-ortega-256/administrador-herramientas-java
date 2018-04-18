@@ -7,8 +7,10 @@ import javax.swing.DefaultComboBoxModel;
 
 import Entities.Borrower;
 import Entities.Supply;
+import model.AlarmSystem;
 import model.RetreatFormViewModel;
 import model.RetreatSystem;
+import model.SupplyObserver;
 import model.SupplySystem;
 import view.AdapterUI;
 import view.RetreatView;
@@ -21,11 +23,13 @@ public class RetreatController implements ActionListener {
 	private RetreatFormViewModel rvm;
 	private SupplySystem supplySystem;
 	
-	public RetreatController(RetreatView retreatView, RetreatFormViewModel rvm, AdapterUI retreatAdapterUI) {
+	public RetreatController(RetreatView retreatView, RetreatFormViewModel rvm, AdapterUI retreatAdapterUI, AlarmSystem alarmSystem) {
 		this.retreatView = retreatView;
 		this.rvm = rvm;
 		this.retreatAdapterUI = retreatAdapterUI;
 		this.supplySystem = new SupplySystem();
+		
+		this.supplySystem.addObserver(new SupplyObserver(alarmSystem));
 		
 		this.retreatSystem = new RetreatSystem(this.supplySystem);
 		this.retreatSystem.addObserver(this.retreatAdapterUI);

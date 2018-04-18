@@ -24,26 +24,18 @@ public class LoanController implements ActionListener{
 	
 	private View view;
 	private AdapterUI adapterUI;
-	public AdapterUI getAdapterUI() {
-		return adapterUI;
-	}
-
-	private LoanObserver loanObserver;
-	private AlarmSystem alarmSystem;
 	private LoanSystem loanSystem;
 	private LoanFormViewModel vm;
 	
-	public LoanController(View view, LoanFormViewModel vm) {
+	public LoanController(View view, LoanFormViewModel vm, AlarmSystem alarmSystem) {
 		this.view = view;
 		this.adapterUI = new AdapterUI();
-		this.alarmSystem =  new AlarmSystem(new ArrayList<Alarm>(), new ArrayList<Alarm>());
-		this.loanObserver = new LoanObserver(this.alarmSystem);
 		
 		this.vm = vm;
 		
 		this.loanSystem = new LoanSystem(this.vm.getAllTools());
 		this.loanSystem.addObserver(this.adapterUI);
-		this.loanSystem.addObserver(this.loanObserver);
+		this.loanSystem.addObserver(new LoanObserver(alarmSystem));
 		
 		this.view.getBtnCreateLoan().addActionListener(this);
 	}
@@ -64,6 +56,10 @@ public class LoanController implements ActionListener{
 			Borrower loanWorker =  (Borrower)this.view.getCbWorkers().getSelectedItem();
 			this.loanSystem.checkLoanGeneration(loanTool, loanWorker);
 		}
+	}
+	
+	public AdapterUI getAdapterUI() {
+		return adapterUI;
 	}
 
 }

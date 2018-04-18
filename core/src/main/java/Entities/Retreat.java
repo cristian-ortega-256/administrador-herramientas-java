@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class Retreat {
 	
-	int retreatNumber;
-	Borrower borrower;
-	Supply supply;
-	int quantity;
-	Date date;
+	private int retreatNumber;
+	private Borrower borrower;
+	private Supply supply;
+	private int quantity;
+	private Date date;
 	
 	public Retreat(int retreatNumber, Borrower borrower, Supply supply, int quantity) {
 		this.retreatNumber = retreatNumber;
@@ -53,7 +53,7 @@ public class Retreat {
 	@Override
 	public String toString() {
 			return "Id: " + this.retreatNumber + 
-				" - Borrower: " + this.borrower.getName() + 
+				" - Remover: " + this.borrower.getName() + 
 				" - Supply: " + this.supply.getName() + 
 				" - Quantity: " + this.quantity;
 	}

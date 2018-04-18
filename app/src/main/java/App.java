@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+
+import Entities.Alarm;
 import controller.LoanController;
 import controller.RetreatController;
 import model.LoanFormViewModel;
 import model.RetreatFormViewModel;
 import model.SupplySystem;
 import model.ToolSystem;
+import model.AlarmSystem;
 import model.BorrowerSystem;
 import view.RetreatView;
 import view.View;
@@ -25,10 +29,12 @@ public class App {
 		rvm.setAllBorrowers(ws.getBorrowers());
 		rvm.setAllSupplies(ss.getAllSupplies());
 		
-		LoanController controller = new LoanController(view,vm);
+		AlarmSystem alarmSystem = new AlarmSystem(new ArrayList<Alarm>(), new ArrayList<Alarm>());
+		
+		LoanController controller = new LoanController(view,vm,alarmSystem);
 		controller.initialize();
 		
-		RetreatController rController = new RetreatController(rView, rvm, controller.getAdapterUI());
+		RetreatController rController = new RetreatController(rView, rvm, controller.getAdapterUI(),alarmSystem);
 		rController.initialize();
 	}
 }

@@ -45,7 +45,7 @@ public class RetreatTest {
 		Retreat retreat = new Retreat(1, borrower, supply, 20);
 		
 		assertEquals(retreat.toString(), "Id: " + 1 + 
-				" - Borrower: " + retreat.getBorrower().getName() + 
+				" - Remover: " + retreat.getBorrower().getName() + 
 				" - Supply: " + retreat.getSupply().getName() + 
 				" - Quantity: " + retreat.getQuantity());
 	}
