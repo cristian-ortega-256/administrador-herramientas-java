@@ -15,11 +15,15 @@ public class LoanObserver implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
+		/*
+		if(arg.getClass() == Loan.class)
+			notifyAlarmSystem((Loan)arg);
+		*/
 		notifyAlarmSystem((Loan)arg);
 	}
 	
 	private void notifyAlarmSystem(Loan l) {
-		alarmSystem.checkAlarmCreation(l);
+		alarmSystem.checkLoanAlarmCreation(l);
 	}
 
 }

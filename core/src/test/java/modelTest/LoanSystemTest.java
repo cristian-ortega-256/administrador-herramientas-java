@@ -42,32 +42,4 @@ public class LoanSystemTest {
         assertEquals(loanSystem.getLoans().size(), 1);
     }
 	
-	/*
-	@Test 
-	public void testLoanToolAsignation() {
-		ToolSystem tools = new ToolSystem();
-		Borrower borrower = new Borrower("Pepe");
-		Tool tool = tools.getAllTools().get(0);
-		LoanSystem loanSystem = new LoanSystem(tools.getAllTools());
-		
-		loanSystem.checkLoanGeneration(tool, borrower);
-		
-		Loan loan = loanSystem.getLoans().get(0);
-		assertEquals(tool.getName(), loan.get_tool().getName());
-	}
-	
-	@Test 
-	public void testLoanBorroweAsignation() {
-		ToolSystem tools = new ToolSystem();
-		Borrower borrower = new Borrower("Pepe");
-		Tool tool = tools.getAllTools().get(0);
-		LoanSystem loanSystem = new LoanSystem(tools.getAllTools());
-		
-		loanSystem.checkLoanGeneration(tool, borrower);
-		
-		Loan loan = loanSystem.getLoans().get(0);
-		assertEquals(borrower.getName(), loan.get_borrower().getName());
-	}
-	*/
-	
 }

@@ -19,9 +19,8 @@ public class AlarmTest {
 		Tool tool = new Tool("Martillo - 1", ToolType.Martillo);
 		Loan loan = new Loan(0, tool, borrower);
 		Date date = new Date();
-		Alarm alarm = new Alarm(loan, date);
+		Alarm alarm = new Alarm(date);
 		
-		assertEquals(alarm.getLoan(),loan);
 		assertEquals(alarm.getExpirationDate(),date);
 	}
 	
@@ -31,11 +30,9 @@ public class AlarmTest {
 		Tool tool = new Tool("Martillo - 1", ToolType.Martillo);
 		Loan loan = new Loan(0, tool, borrower);
 		Date date = new Date();
-		Alarm alarm = new Alarm(loan, date);
+		Alarm alarm = new Alarm(date);
 		
-		assertEquals(alarm.toString(),"Loan: " + loan.toString() +
-				"\n CreationDate: " + loan.get_creationDate().toString() + "\n" +
-				" ExpirationDate: " + date.toString() + "\n");
+		assertEquals(alarm.toString(),date.toString());
 	}
 	
 }

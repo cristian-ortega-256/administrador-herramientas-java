@@ -37,6 +37,7 @@ public class LoanSystem extends Observable {
 		Loan _loan = new Loan(this.loanNumberCounter,tool, borrower);
 		this.addLoan(_loan);
 		this.notifyAllObservers(_loan);
+		//this.notifyAllObservers(this.loans);
 		this.incrementLoanNumberCounter();
 		setToolAsBorrowed(tool);
 	}
@@ -51,12 +52,6 @@ public class LoanSystem extends Observable {
 		this.borrowedTools.add(t);
 	}
 	
-	/*
-	private void removeToolFromBorrowed(Tool t) {
-		this.borrowedTools.remove(t);
-	}
-	*/
-	
 	private void incrementLoanNumberCounter() {
 		++this.loanNumberCounter;
 	}
@@ -65,6 +60,13 @@ public class LoanSystem extends Observable {
 		setChanged();
         notifyObservers(loan);
 	}
+	
+	/*
+	private void notifyAllObservers(ArrayList<Loan> loans) {
+		setChanged();
+        notifyObservers(loans);
+	}
+	*/
 	
 	private void addLoan(Loan loan) {
 		this.loans.add(loan);
