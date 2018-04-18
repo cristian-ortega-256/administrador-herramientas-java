@@ -7,6 +7,7 @@ import java.util.Observer;
 import javax.swing.DefaultListModel;
 
 import Entities.Loan;
+import Entities.Retreat;
 
 public class AdapterUI implements Observer{
 	
@@ -22,10 +23,18 @@ public class AdapterUI implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		Loan eLoan = (Loan) arg;
-		DefaultListModel listModel = new DefaultListModel();
-		listModel.addElement(eLoan);
-		this.table.getListLoan().setModel(listModel);
+		if (arg.getClass() == Loan.class) {
+			Loan eLoan = (Loan) arg;
+			DefaultListModel listModel = new DefaultListModel();
+			listModel.addElement(eLoan);
+			this.table.getListLoan().setModel(listModel);	
+		}
+		else if (arg.getClass() == Retreat.class) {
+			Retreat eRetreat = (Retreat) arg;
+			DefaultListModel listModel = new DefaultListModel();
+			listModel.addElement(eRetreat);
+			this.table.getListRetreat().setModel(listModel);
+		}
 	}
 	
 }

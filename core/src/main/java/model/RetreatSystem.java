@@ -14,9 +14,9 @@ public class RetreatSystem extends Observable{
 	private List<Retreat> retreats;
 	private SupplySystem supplySystem;
 	
-	public RetreatSystem(SupplySystem supplySistem) {
+	public RetreatSystem(SupplySystem supplySystem) {
 		super();
-		this.supplySystem = supplySistem;
+		this.supplySystem = supplySystem;
 		this.retreats = new ArrayList<Retreat>();
 	}
 	
@@ -30,7 +30,7 @@ public class RetreatSystem extends Observable{
 	private void generateRetreat(Borrower borrower, Supply supply, int quantity) {
 		Retreat retreat = new Retreat(this.retreatNumberCounter, borrower, supply, quantity);
 		this.addRetreat(retreat);
-		this.notifyAllObservers(this.retreats);
+		this.notifyAllObservers(retreat);
 		this.incrementRetreatNumberCounter();
 	}
 	
@@ -38,7 +38,7 @@ public class RetreatSystem extends Observable{
 		++this.retreatNumberCounter;
 	}
 	
-	private void notifyAllObservers(List<Retreat> retreats) {
+	private void notifyAllObservers(Retreat retreats) {
 		setChanged();
         notifyObservers(retreats);
 	}

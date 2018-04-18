@@ -24,6 +24,10 @@ public class LoanController implements ActionListener{
 	
 	private View view;
 	private AdapterUI adapterUI;
+	public AdapterUI getAdapterUI() {
+		return adapterUI;
+	}
+
 	private LoanObserver loanObserver;
 	private AlarmSystem alarmSystem;
 	private LoanSystem loanSystem;
