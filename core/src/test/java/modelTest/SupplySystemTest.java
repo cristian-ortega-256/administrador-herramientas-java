@@ -5,13 +5,20 @@ package modelTest;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import Entities.Alarm;
 import Entities.Borrower;
 import Entities.Retreat;
 import Entities.Supply;
+import model.AlarmSystem;
+import model.RetreatSystem;
+import model.SupplyObserver;
 import model.SupplySystem;
 
 public class SupplySystemTest {

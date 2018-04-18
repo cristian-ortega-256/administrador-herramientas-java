@@ -8,6 +8,9 @@ import java.util.Observable;
 
 import Entities.Alarm;
 import Entities.Loan;
+import Entities.LoanAlarm;
+import Entities.Supply;
+import Entities.SupplyAlarm;
 
 public class AlarmSystem extends Observable{
 	
@@ -21,13 +24,25 @@ public class AlarmSystem extends Observable{
 		this.allAlarms = allAlarms;
 	}
 
-	public void checkAlarmCreation(Loan loan) {	
-		createAlarm(loan);
+	public void checkLoanAlarmCreation(Loan loan) {
+		// Add future validations for alarm creation
+		createLoanAlarm(loan);
 	}
 	
-	private void createAlarm(Loan loan) {
+	public void checkSupplyAlarmCreation(Supply s) {
+		// Add future validations for alarm creation
+		createSupplyAlarm(s);
+	}
+	
+	private void createSupplyAlarm(Supply s) {
+		Alarm alarm = new SupplyAlarm(s, new Date());
+		activeAlarms.add(alarm);
+		this.notifyAllObservers(alarm);
+	}
+
+	private void createLoanAlarm(Loan loan) {
 		Date expirationDate = generateDefaultExpirationDate(loan.get_creationDate(), this.defaultExpirationTime);
-		Alarm alarm = new Alarm(loan, expirationDate);
+		Alarm alarm = new LoanAlarm(loan, expirationDate);
 		activeAlarms.add(alarm);
 		this.notifyAllObservers(alarm);
 	}
@@ -35,6 +50,10 @@ public class AlarmSystem extends Observable{
 	private void notifyAllObservers(Alarm alarm) {
 		setChanged();
         notifyObservers(alarm);
+        System.out.println("\nNotifing alarm: " + alarm.getClass().getName() + "\n" + alarm.toString());
+        System.out.println("-------------------------------------------------------------");
+        System.out.println("Active alarms: " + this.activeAlarms.size());
+        System.out.println("-------------------------------------------------------------");
 	}
 	
 	private Date generateDefaultExpirationDate(Date dt,int daysToAdd) {
@@ -42,7 +61,7 @@ public class AlarmSystem extends Observable{
 		c.setTime(dt); 
 		c.add(Calendar.DATE, daysToAdd);
 		return c.getTime();
-	} 
+	}
 
 	public List<Alarm> getActiveAlarms() {
 		return activeAlarms;

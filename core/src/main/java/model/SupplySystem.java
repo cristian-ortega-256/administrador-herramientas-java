@@ -2,10 +2,11 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 import Entities.Supply;
 
-public class SupplySystem {
+public class SupplySystem extends Observable{
 	
 	private List<Supply> allSupplies;
 	
@@ -54,6 +55,17 @@ public class SupplySystem {
 		int index = this.allSupplies.indexOf(supply);
 		supply.setStock(supply.getStock() - retreatQuantity);
 		this.allSupplies.set(index, supply);
+		this.hasEnoughStock(supply);
+	}
+
+	private void hasEnoughStock(Supply supply) {
+		if(supply.getStock() <= supply.getMinimumStock())
+			this.notifyAllObservers(supply);
+	}
+	
+	private void notifyAllObservers(Supply supply) {
+		setChanged();
+        notifyObservers(supply);
 	}
 
 }
