@@ -1,12 +1,16 @@
 import java.util.ArrayList;
+import java.util.List;
 
 import Entities.Alarm;
 import controller.LoanController;
 import controller.RetreatController;
 import model.LoanFormViewModel;
 import model.RetreatFormViewModel;
+import model.SchedulerTaskExecutor;
 import model.SupplySystem;
 import model.ToolSystem;
+import model.AlarmObserver;
+import model.AlarmStatusVerifier;
 import model.AlarmSystem;
 import model.BorrowerSystem;
 import view.RetreatView;
@@ -36,5 +40,20 @@ public class App {
 		
 		RetreatController rController = new RetreatController(rView, rvm, controller.getAdapterUI(),alarmSystem);
 		rController.initialize();
+		
+		// -------- NEW ----------
+		
+		AlarmStatusVerifier alarmVerifier = new AlarmStatusVerifier();
+		
+		AlarmObserver alarmObserver = new AlarmObserver(alarmVerifier);
+		
+		alarmSystem.addObserver(alarmObserver);
+		
+		List<Runnable> scheduledTasks = new ArrayList<Runnable>();
+		scheduledTasks.add(alarmVerifier);
+		
+		SchedulerTaskExecutor scheduledExecutor = new SchedulerTaskExecutor(scheduledTasks);
+		scheduledExecutor.executeScheduledTasks();
+		
 	}
 }
