@@ -16,7 +16,7 @@ import model.ToolSystem;
 
 public class LoanObserverTest {
 	@Test
-	public void loanCreatedeventHandlingTest() {
+	public void loanCreatedEventHandlingTest() {
 		ToolSystem tools = new ToolSystem();
 		Borrower borrower = new Borrower("Pepe");
 		Tool tool = tools.getAllTools().get(0);

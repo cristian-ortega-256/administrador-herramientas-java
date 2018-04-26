@@ -49,10 +49,10 @@ public class AlarmSystem extends Observable{
 	
 	private void notifyAllObservers(Alarm alarm) {
 		setChanged();
-        notifyObservers(alarm);
-        System.out.println("\nNotifing alarm: " + alarm.getClass().getName() + "\n" + alarm.toString());
+        notifyObservers(this.activeAlarms);
+        System.out.println("\nNew alarm: " + alarm.getClass().getName() + "\n" + alarm.toString());
         System.out.println("-------------------------------------------------------------");
-        System.out.println("Active alarms: " + this.activeAlarms.size());
+        System.out.println("Notifing active alarms: " + this.activeAlarms.size());
         System.out.println("-------------------------------------------------------------");
 	}
 	
