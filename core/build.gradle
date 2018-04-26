@@ -1,8 +1,8 @@
 plugins {
     // Apply the java plugin to add support for Java
     id 'java'
-
-    id "com.palantir.jacoco-coverage" version "0.4.0"
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.6.3'
 }
 
 dependencies {
@@ -13,7 +13,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-jacoco {
-    toolVersion = "0.8.0"
-    reportsDir = file("$buildDir/JacocoReports")
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
 }
