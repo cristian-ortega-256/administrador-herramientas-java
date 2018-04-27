@@ -1,41 +1,41 @@
 
 package modelTest;
 
-
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import Entities.Alarm;
 import Entities.Borrower;
 import Entities.Retreat;
 import Entities.Supply;
-import model.AlarmSystem;
-import model.RetreatSystem;
-import model.SupplyObserver;
 import model.SupplySystem;
 
 public class SupplySystemTest {
+	
+	private SupplySystem ss;
+	private Supply supply;
+	private Borrower borrower;
+	private Retreat retreat;
 
+	@Before
+	public void prepareDependencies() {
+		this.ss = new SupplySystem();
+		this.supply = new Supply("Clavos", 100, 20);
+		this.borrower = new Borrower("Goku");
+		this.retreat = new Retreat(1, borrower, supply, 50);
+	}
 	
 	@Test
 	public void testSupplySystemControler() {
-		SupplySystem ss = new SupplySystem();
 		assertEquals(ss.getAllSupplies().size(),4);
 	}
 	
 	@Test
 	public void testSupplySystemValidation() {
-		SupplySystem ss = new SupplySystem();
-		Supply supply = new Supply("Clavos", 100, 20);
-		Borrower borrower = new Borrower("Goku");
-		Retreat retreat = new Retreat(1, borrower, supply, 50);
 		assertTrue(ss.suppliesValidations(supply, retreat.getQuantity()));
 		
 		retreat.setQuantity(101);
@@ -47,11 +47,7 @@ public class SupplySystemTest {
 	
 	@Test
 	public void testSupplySystemDiscountStockSupply(){
-		SupplySystem ss = new SupplySystem();
-		Supply supply = new Supply("Clavos", 100, 20);
-		Borrower borrower = new Borrower("Goku");
-		Retreat retreat = new Retreat(1, borrower, supply, 51);
 		ss.discountStockSupply(supply, retreat.getQuantity());
-		assertEquals(supply.getStock(), 49);
+		assertEquals(supply.getStock(), 50);
 	}
 }

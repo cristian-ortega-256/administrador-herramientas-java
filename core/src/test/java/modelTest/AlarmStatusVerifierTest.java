@@ -5,11 +5,15 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import Entities.Alarm;
 import Entities.Borrower;
+import Entities.Loan;
 import Entities.Supply;
+import Entities.Tool;
+import Entities.ToolType;
 import model.AlarmObserver;
 import model.AlarmStatusVerifier;
 import model.AlarmSystem;
@@ -17,30 +21,56 @@ import model.SchedulerTaskExecutor;
 
 public class AlarmStatusVerifierTest {
 	
+	private Supply supply;
+	private Loan loan;
+	private Borrower borrower;
+	private Tool tool;
+	private AlarmSystem alarmSystem;
+	private AlarmStatusVerifier alarmVerifier;
+	private AlarmObserver alarmObserver;
+	private List<Runnable> runnables;
+	private SchedulerTaskExecutor schedulerTaskExecutor;
+	
+	@Before
+	public void prepareDependencies() {
+		new Borrower("Pepe");
+		this.supply = new Supply("Tornillos",100,500);
+		this.borrower = new Borrower("Pepe");
+		this.tool = new Tool("Martillo-1",ToolType.Martillo);
+		this.loan = new Loan(0, tool,borrower);
+		this.alarmSystem = new AlarmSystem(new ArrayList<Alarm>(), new ArrayList<Alarm>());
+		this.alarmVerifier = new AlarmStatusVerifier();
+		this.alarmObserver = new AlarmObserver(alarmVerifier);
+		this.runnables = new ArrayList<Runnable>();
+	}
+	
 	@Test
 	public void testAlarmExpiration() {
-		Borrower borrower = new Borrower("Pepe");
-		Supply supply = new Supply("Tornillos",100,500);
-		AlarmSystem alarmSystem = new AlarmSystem(new ArrayList<Alarm>(), new ArrayList<Alarm>());
-		
-		AlarmStatusVerifier alarmVerifier = new AlarmStatusVerifier();
 		assertEquals(alarmVerifier.getActiveAlarms().size(),0);
-		
-		AlarmObserver alarmObserver = new AlarmObserver(alarmVerifier);
+
 		assertEquals(alarmVerifier.getActiveAlarms().size(),0);
 		alarmSystem.addObserver(alarmObserver);
 		
 		alarmSystem.checkSupplyAlarmCreation(supply);
 		assertEquals(alarmVerifier.getActiveAlarms().size(),1);
-		
-		List<Runnable> runnables = new ArrayList<Runnable>();
 		runnables.add(alarmVerifier);
 		
+		this.schedulerTaskExecutor = new SchedulerTaskExecutor(runnables);
 		// TODO --> CHECK THE WAY TO EXECUTE AND TEST ASYNC TASKS
-		SchedulerTaskExecutor schedulerTaskExecutor = new SchedulerTaskExecutor(runnables);
 		schedulerTaskExecutor.executeScheduledTasks();
 		
 		assertEquals(alarmVerifier.getActiveAlarms().size(),1);
+	}
+	
+	@Test
+	public void testAlarmsScann() {
+		alarmSystem.addObserver(alarmObserver);
+		
+		alarmSystem.checkSupplyAlarmCreation(supply);
+		alarmSystem.checkLoanAlarmCreation(loan);
+		assertEquals(alarmVerifier.getActiveAlarms().size(),2);
+		
+		alarmVerifier.scannAlarms();
 	}
 
 }

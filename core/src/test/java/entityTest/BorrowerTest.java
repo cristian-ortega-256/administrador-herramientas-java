@@ -6,16 +6,24 @@ import Entities.Borrower;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
+
 public class BorrowerTest {
+	
+	private Borrower borrower;
+	
+	@Before
+	public void prepareDependencies() {
+		this.borrower =  new Borrower("Goku");
+	}
+	
     @Test 
     public void testConstructor() {
-        Borrower borrower =  new Borrower("Goku");
         assertEquals(borrower.getName(), "Goku");
     }
     
     @Test 
     public void testBorrowerToString() {
-        Borrower borrower =  new Borrower("Goku");
         assertEquals(borrower.toString(), "Goku");
     }
 }

@@ -2,6 +2,7 @@ package modelTest;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import model.BorrowerSystem;
@@ -10,18 +11,25 @@ import model.ToolSystem;
 
 public class LoanFormViewModelTest {
 	
+	private LoanFormViewModel vm;
+	private BorrowerSystem ws;
+	private ToolSystem ts;
+	
+	@Before
+	public void prepareDependencies() {
+		this.vm = new LoanFormViewModel();
+		this.ws = new BorrowerSystem();
+		this.ts = new ToolSystem();
+	}
+	
 	@Test
 	public void testSetBorrowers() {
-		LoanFormViewModel vm = new LoanFormViewModel();
-		BorrowerSystem ws = new BorrowerSystem();
 		vm.setAllBorrowers(ws.getBorrowers());
 		assertTrue(vm.getAllBorrowers().size() == 4);
 	}
 	
 	@Test
 	public void testSetTools() {
-		LoanFormViewModel vm = new LoanFormViewModel();
-		ToolSystem ts = new ToolSystem();
 		vm.setAllTools(ts.getAllTools());
 		assertTrue(vm.getAllTools().size() == 9);
 	}
