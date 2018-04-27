@@ -32,4 +32,9 @@ public class LoanAlarmTest {
 	public void getterTest() {
 		assertEquals(loanAlarm.getLoan(),loan);
 	}
+	
+	@Test
+	public void testToString() {
+		assertEquals(loanAlarm.toString(),"LOAN ALARM: " + this.loan.toString() + "\n" + loanAlarm.getExpirationDate().toString());
+	}
 }
