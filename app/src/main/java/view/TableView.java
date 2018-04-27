@@ -69,8 +69,8 @@ public class TableView{
 		lblLOA.setBounds(120, 0, 61, 14);
 		frame.getContentPane().add(lblLOA);
 		
-		lblAlarms = new JLabel("ALARMS");
-		lblAlarms.setBounds(273, 306, 61, 16);
+		lblAlarms = new JLabel("A L A R M S");
+		lblAlarms.setBounds(273, 306, 71, 16);
 		frame.getContentPane().add(lblAlarms);
 		
 		alarmsList = new JList();

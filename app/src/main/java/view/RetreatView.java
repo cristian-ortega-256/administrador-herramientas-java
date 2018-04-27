@@ -19,6 +19,8 @@ public class RetreatView {
 	private JComboBox cbBorrow;
 	private JComboBox cbSupplies;
 	private JButton btnCreate;
+	private JLabel lblTool;
+	private JLabel lblRetreater;
 
 	/**
 	 * Launch the application.
@@ -53,25 +55,33 @@ public class RetreatView {
 		frame.getContentPane().setLayout(null);
 		
 		cbBorrow = new JComboBox<Borrower>();
-		cbBorrow.setBounds(42, 55, 146, 20);
+		cbBorrow.setBounds(132, 58, 146, 20);
 		frame.getContentPane().add(cbBorrow);
 		
 		cbSupplies = new JComboBox<Supply>();
-		cbSupplies.setBounds(42, 86, 146, 20);
+		cbSupplies.setBounds(132, 113, 146, 20);
 		frame.getContentPane().add(cbSupplies);
 		
 		txtQuantity = new JTextField();
-		txtQuantity.setBounds(132, 125, 56, 20);
+		txtQuantity.setBounds(220, 145, 56, 20);
 		frame.getContentPane().add(txtQuantity);
 		txtQuantity.setColumns(10);
 		
 		JLabel lblQuantity = new JLabel("Quantity");
-		lblQuantity.setBounds(46, 128, 76, 14);
+		lblQuantity.setBounds(132, 148, 76, 14);
 		frame.getContentPane().add(lblQuantity);
 		
-		btnCreate = new JButton("Create");
-		btnCreate.setBounds(162, 192, 89, 23);
+		btnCreate = new JButton("Create Retreat");
+		btnCreate.setBounds(132, 196, 119, 23);
 		frame.getContentPane().add(btnCreate);
+		
+		lblTool = new JLabel("Tool");
+		lblTool.setBounds(132, 85, 61, 16);
+		frame.getContentPane().add(lblTool);
+		
+		lblRetreater = new JLabel("Retreater");
+		lblRetreater.setBounds(132, 30, 61, 16);
+		frame.getContentPane().add(lblRetreater);
 	}
 
 	public JFrame getFrame() {
