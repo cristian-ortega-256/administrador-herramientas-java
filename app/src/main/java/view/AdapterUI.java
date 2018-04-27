@@ -6,6 +6,7 @@ import java.util.Observer;
 
 import javax.swing.DefaultListModel;
 
+import Entities.Alarm;
 import Entities.Loan;
 import Entities.Retreat;
 
@@ -34,6 +35,14 @@ public class AdapterUI implements Observer{
 			DefaultListModel listModel = new DefaultListModel();
 			listModel.addElement(eRetreat);
 			this.table.getListRetreat().setModel(listModel);
+		}
+		else {
+			ArrayList<Alarm> eAlarmsList = (ArrayList<Alarm>) arg;
+			DefaultListModel listModel = new DefaultListModel();
+			for (Alarm alarm: eAlarmsList) {
+				listModel.addElement(alarm);				
+			}
+			this.table.getAlarmsList().setModel(listModel);
 		}
 	}
 	

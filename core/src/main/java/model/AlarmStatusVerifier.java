@@ -16,7 +16,7 @@ public class AlarmStatusVerifier extends Observable implements Runnable{
 	}
 	
 	private void scannAlarms() {
-		System.out.println(this.activeAlarms.size());
+		System.out.println("Alarms verified: " + this.activeAlarms.size());
 		for (Alarm alarm: this.activeAlarms) {
 		    if(this.isAlarmExpirated(alarm)) {
 		    	this.notifyAllObservers(alarm);
