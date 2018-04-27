@@ -17,7 +17,7 @@ public class SupplyAlarm extends Alarm {
 	
 	@Override
 	public String toString() {
-		return this.supply.toString() + "\n" + this.getExpirationDate().toString();
+		return "SUPPLY ALARM: " + this.supply.toString() + "\n" + this.getExpirationDate().toString();
 	}
 
 }

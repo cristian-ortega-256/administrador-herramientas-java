@@ -41,7 +41,9 @@ public class App {
 		RetreatController rController = new RetreatController(rView, rvm, controller.getAdapterUI(),alarmSystem);
 		rController.initialize();
 		
-		// -------- NEW ----------
+		alarmSystem.addObserver(controller.getAdapterUI());
+		
+		// ALarm Status Verifier Section
 		
 		AlarmStatusVerifier alarmVerifier = new AlarmStatusVerifier();
 		

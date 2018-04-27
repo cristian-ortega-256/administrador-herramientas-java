@@ -17,7 +17,7 @@ public class LoanAlarm  extends Alarm{
 	
 	@Override
 	public String toString() {
-		return this.loan.toString() + "\n" + this.getExpirationDate().toString();
+		return "LOAN ALARM: " + this.loan.toString() + "\n" + this.getExpirationDate().toString();
 	}
 
 }

@@ -50,10 +50,6 @@ public class AlarmSystem extends Observable{
 	private void notifyAllObservers(Alarm alarm) {
 		setChanged();
         notifyObservers(this.activeAlarms);
-        System.out.println("\nNew alarm: " + alarm.getClass().getName() + "\n" + alarm.toString());
-        System.out.println("-------------------------------------------------------------");
-        System.out.println("Notifing active alarms: " + this.activeAlarms.size());
-        System.out.println("-------------------------------------------------------------");
 	}
 	
 	private Date generateDefaultExpirationDate(Date dt,int daysToAdd) {
