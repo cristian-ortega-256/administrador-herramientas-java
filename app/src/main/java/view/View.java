@@ -49,17 +49,25 @@ public class View {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		btnCreateLoan = new JButton("Agregar");
-		btnCreateLoan.setBounds(168, 177, 117, 29);
+		btnCreateLoan = new JButton("Create Loan");
+		btnCreateLoan.setBounds(165, 176, 117, 29);
 		frame.getContentPane().add(btnCreateLoan);
 		
 		cbWorkers = new JComboBox<Borrower>();
-		cbWorkers.setBounds(43, 37, 156, 30);
+		cbWorkers.setBounds(138, 38, 156, 30);
 		frame.getContentPane().add(cbWorkers);
 		
 		cbTools = new JComboBox<Tool>();
-		cbTools.setBounds(43, 80, 156, 30);
+		cbTools.setBounds(138, 104, 156, 30);
 		frame.getContentPane().add(cbTools);
+		
+		JLabel lblBorrower = new JLabel("Borrower");
+		lblBorrower.setBounds(138, 10, 61, 16);
+		frame.getContentPane().add(lblBorrower);
+		
+		JLabel lblTool = new JLabel("Tool");
+		lblTool.setBounds(138, 80, 61, 16);
+		frame.getContentPane().add(lblTool);
 		
 	}
 
