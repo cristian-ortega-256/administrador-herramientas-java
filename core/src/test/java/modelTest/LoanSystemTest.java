@@ -2,24 +2,31 @@ package modelTest;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import Entities.Borrower;
-import Entities.Loan;
 import Entities.Tool;
 import model.LoanSystem;
 import model.ToolSystem;
 
 public class LoanSystemTest {
-	// TODO --> Check mock library
+	
+	private ToolSystem tools;
+	private Borrower borrower;
+	private Tool tool;
+	private LoanSystem loanSystem;
+	
+	@Before
+	public void prepareDependencies() {
+		this.tools = new ToolSystem();
+		this.borrower = new Borrower("Pepe");
+		this.tool = tools.getAllTools().get(0);
+		this.loanSystem = new LoanSystem(tools.getAllTools());
+	}
+	
 	@Test 
-	public void testLoanGenerationSucces() {
-		
-		ToolSystem tools = new ToolSystem();
-		Borrower borrower = new Borrower("Pepe");
-		Tool tool = tools.getAllTools().get(0);
-		LoanSystem loanSystem = new LoanSystem(tools.getAllTools());
-		
+	public void testLoanGenerationSucces() {	
 		assertEquals(loanSystem.getLoans().size(), 0);
 		loanSystem.checkLoanGeneration(tool, borrower);
         assertEquals(loanSystem.getLoans().size(), 1);
@@ -27,11 +34,6 @@ public class LoanSystemTest {
 	
 	@Test
 	public void testLoanGenerationFailure() {
-		
-		ToolSystem tools = new ToolSystem();
-		Borrower borrower = new Borrower("Pepe");
-		Tool tool = tools.getAllTools().get(0);
-		LoanSystem loanSystem = new LoanSystem(tools.getAllTools());
 		
 		assertEquals(loanSystem.getLoans().size(), 0);
 		
