@@ -12,7 +12,6 @@ public class LoanSystem extends Observable {
 	
 	private int loanNumberCounter = 0;
 	private ArrayList<Loan> loans;
-	
 	private List<Tool> allTools;
 	private List<Tool> borrowedTools;
 	
