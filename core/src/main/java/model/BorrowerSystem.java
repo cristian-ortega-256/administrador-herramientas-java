@@ -11,24 +11,14 @@ public class BorrowerSystem {
 	
 	public BorrowerSystem() {
 		this.workers = new ArrayList<Borrower>();
-		this.populateInternalWorkers();
 	}
-	// TODO --> Move this outside of the class
-	private void populateInternalWorkers() {
-		this.workers.add(new Borrower("Goku"));
-		this.workers.add(new Borrower("Vegeta"));
-		this.workers.add(new Borrower("Gohan"));
-		this.workers.add(new Borrower("Trunks"));
+
+	public void setWorkers(List<Borrower> list) {
+		this.workers = list;
 	}
 
 	public List<Borrower> getBorrowers() {
 		return workers;
 	}
-	
-	/*
-	public void setBorrowers(List<Borrower> workers) {
-		this.workers = workers;
-	}
-	*/
 	
 }

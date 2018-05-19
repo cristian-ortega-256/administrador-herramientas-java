@@ -3,6 +3,7 @@ package modelTest;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.junit.Test;
 import Entities.Alarm;
 import Entities.Borrower;
 import Entities.Tool;
+import Entities.ToolType;
 import model.AlarmSystem;
 import model.LoanObserver;
 import model.LoanSystem;
@@ -22,10 +24,16 @@ public class LoanObserverTest {
 	private Tool tool;
 	private LoanSystem loanSystem;
 	private AlarmSystem alarmSystem;
+	private List<Tool> listTools;
 	
 	@Before
 	public void prepareDependencies() {
 		this.tools = new ToolSystem();
+		this.listTools = new ArrayList<Tool>();
+		this.listTools.add(new Tool("Martillo",ToolType.Martillo));
+		this.listTools.add(new Tool("Destornilador",ToolType.Destornillador));
+		this.listTools.add(new Tool("Taladro",ToolType.Taladro));
+		this.tools.setTools(listTools);
 		this.borrower = new Borrower("Pepe");
 		this.tool = tools.getAllTools().get(0);
 		this.loanSystem = new LoanSystem(tools.getAllTools());

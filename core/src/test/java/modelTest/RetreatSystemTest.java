@@ -2,6 +2,9 @@ package modelTest;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,10 +21,17 @@ public class RetreatSystemTest {
 	private Supply supply;
 	private Borrower borrower;
 	private Retreat retreat;
+	private List<Supply> listSupplies;
 	
 	@Before
 	public void prepareDependencies() {
 		this.ss = new SupplySystem();
+		this.listSupplies = new ArrayList<Supply>();
+		this.listSupplies.add(new Supply("Tornillos",100,500));
+		this.listSupplies.add(new Supply("Clavos",80,40));
+		this.listSupplies.add(new Supply("Lamparas", 50,25));
+		this.listSupplies.add(new Supply("Tubos de luz",20,10));
+		this.ss.setAllSupplies(listSupplies);
 		this.rs = new RetreatSystem(ss);
 		this.supply = new Supply("Clavos", 100, 20);
 		this.borrower = new Borrower("Goku");

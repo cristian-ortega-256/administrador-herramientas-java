@@ -24,7 +24,7 @@ public class ExcelDB {
 			return rs;
 		} 
 		finally {
-			this.rs.close();
+			//this.rs.close();
 			this.con.close();
 		}		
 	}
