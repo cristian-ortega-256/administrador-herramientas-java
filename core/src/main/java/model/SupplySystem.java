@@ -12,14 +12,7 @@ public class SupplySystem extends Observable{
 	
 	public SupplySystem() {
 		this.allSupplies = new ArrayList<Supply>();
-		this.populateInternalSupplies();
-	}
-	
-	private void populateInternalSupplies() {
-		this.allSupplies.add(new Supply("Tornillos", 100, 500));
-		this.allSupplies.add(new Supply("Clavos", 80, 40));
-		this.allSupplies.add(new Supply("Lamparas", 50, 25));
-		this.allSupplies.add(new Supply("Tubos de luz", 20, 10));
+		
 	}
 	
 	public boolean suppliesValidations(Supply supply, int quantity) {
@@ -36,6 +29,10 @@ public class SupplySystem extends Observable{
 	
 	public List<Supply> getAllSupplies() {
 		return this.allSupplies;
+	}
+	
+	public void setAllSupplies(List<Supply> list) {
+		this.allSupplies = list;
 	}
 	
 	

@@ -25,15 +25,27 @@ public class AlarmSystem extends Observable{
 	}
 
 	public void checkLoanAlarmCreation(Loan loan) {
-		// Add future validations for alarm creation
+		// TODO --> Add future validations for alarm creation
 		createLoanAlarm(loan);
 	}
 	
 	public void checkSupplyAlarmCreation(Supply s) {
-		// Add future validations for alarm creation
-		createSupplyAlarm(s);
+		// TODO --> Add future validations for alarm creation
+		if(!supplyHasALarmAssociated(s))
+			createSupplyAlarm(s);
 	}
 	
+	private boolean supplyHasALarmAssociated(Supply s) {
+		for(Alarm alarm:this.activeAlarms) {
+			if(alarm.getClass().getName().equals("Entities.SupplyAlarm")) {
+				SupplyAlarm sAlarm = (SupplyAlarm) alarm;
+				if(sAlarm.getSupply().getName().equals(s.getName()))
+					return true;
+			}
+		}
+		return false;
+	}
+
 	private void createSupplyAlarm(Supply s) {
 		Alarm alarm = new SupplyAlarm(s, new Date());
 		activeAlarms.add(alarm);

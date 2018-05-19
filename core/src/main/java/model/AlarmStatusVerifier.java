@@ -17,12 +17,12 @@ public class AlarmStatusVerifier extends Observable implements Runnable{
 	
 	public void scannAlarms() {
 		System.out.println("Alarms verified: " + this.activeAlarms.size());
+		System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
 		for (Alarm alarm: this.activeAlarms) {
 		    if(this.isAlarmExpirated(alarm)) {
-		    	this.notifyAllObservers(alarm);
+		    	this.notifyAllObservers(alarm); 
 		    }
 		}
-		System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
 	}
 	
 	private boolean isAlarmExpirated(Alarm alarm) {
@@ -36,8 +36,6 @@ public class AlarmStatusVerifier extends Observable implements Runnable{
 	private void notifyAllObservers(Alarm alarm) {
 		setChanged();
         notifyObservers(alarm);
-        System.out.println("\nEXPIRED ALARM: " + alarm.getClass().getName() + "\n" + alarm.toString());
-        System.out.println("---------------------------------------");
 	}
 
 	public void setActiveAlarms(ArrayList<Alarm> activeAlarms) {
