@@ -39,9 +39,6 @@ public class App {
 		BorrowerSystem ws = new BorrowerSystem();
 		ws.setWorkers(new BorrowerDAO().GetAll());
 		
-		SupplySystem ss = new SupplySystem();
-		ss.setAllSupplies(new SupplyDAO().GetAll());
-		
 		AlarmSystem alarmSystem = new AlarmSystem(new ArrayList<Alarm>(), new ArrayList<Alarm>());
 		
 		AdapterUI adapterUI = new AdapterUI();
@@ -59,15 +56,16 @@ public class App {
 		lController.initialize();
 		
 		// SUPPLY SECTION
-		SupplySystem supplySystem = new SupplySystem();
-		supplySystem.addObserver(new SupplyObserver(alarmSystem));
+		SupplySystem ss = new SupplySystem();
+		ss.setAllSupplies(new SupplyDAO().GetAll());
+		ss.addObserver(new SupplyObserver(alarmSystem));
 		
 		// RETREAT SECTION
 		RetreatFormViewModel rvm = new RetreatFormViewModel();
 		rvm.setAllBorrowers(ws.getBorrowers());
 		rvm.setAllSupplies(ss.getAllSupplies());
 		
-		RetreatSystem retreatSystem = new RetreatSystem(supplySystem);
+		RetreatSystem retreatSystem = new RetreatSystem(ss);
 		retreatSystem.addObserver(adapterUI);
 		RetreatController rController = new RetreatController(rView, rvm,retreatSystem);
 		rController.initialize();
