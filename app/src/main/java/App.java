@@ -1,9 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import com.codoid.products.exception.FilloException;
+
 import Entities.Alarm;
 import controller.LoanController;
 import controller.RetreatController;
+import database.BorrowerDAO;
+import database.SupplyDAO;
+import database.ToolDAO;
 import model.LoanFormViewModel;
 import model.LoanObserver;
 import model.LoanSystem;
@@ -24,13 +29,18 @@ import view.RetreatView;
 import view.View;
 
 public class App {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FilloException{
 		View view = new View();
 		RetreatView rView = new RetreatView();
 		
 		ToolSystem ts = new ToolSystem();
+		ts.setTools(new ToolDAO().GetAll());
+		
 		BorrowerSystem ws = new BorrowerSystem();
+		ws.setWorkers(new BorrowerDAO().GetAll());
+		
 		SupplySystem ss = new SupplySystem();
+		ss.setAllSupplies(new SupplyDAO().GetAll());
 		
 		AlarmSystem alarmSystem = new AlarmSystem(new ArrayList<Alarm>(), new ArrayList<Alarm>());
 		
@@ -81,6 +91,5 @@ public class App {
 		
 		SchedulerTaskExecutor scheduledExecutor = new SchedulerTaskExecutor(scheduledTasks);
 		scheduledExecutor.executeScheduledTasks();
-
 	}
 }
