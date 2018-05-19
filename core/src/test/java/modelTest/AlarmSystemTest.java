@@ -51,8 +51,8 @@ public class AlarmSystemTest {
 	@Test
 	public void testExpirationDateAsignation() {
 		alarmSystem.checkLoanAlarmCreation(loan);
-		int expirationDate = alarmSystem.getActiveAlarms().get(0).getExpirationDate().getDay();
-		assertEquals(expirationDate,date.getDay()+1);
+		int expirationDate = alarmSystem.getActiveAlarms().get(0).getExpirationDate().getDate();
+		assertEquals(expirationDate,date.getDate()+1);
 	}
 	
 	@Test

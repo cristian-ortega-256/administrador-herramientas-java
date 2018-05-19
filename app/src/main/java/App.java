@@ -7,6 +7,7 @@ import controller.RetreatController;
 import model.LoanFormViewModel;
 import model.LoanObserver;
 import model.LoanSystem;
+import model.NotificationSystem;
 import model.RetreatFormViewModel;
 import model.RetreatSystem;
 import model.SchedulerTaskExecutor;
@@ -17,6 +18,7 @@ import model.AlarmObserver;
 import model.AlarmStatusVerifier;
 import model.AlarmSystem;
 import model.BorrowerSystem;
+import model.ExpiredAlarmObserver;
 import view.AdapterUI;
 import view.RetreatView;
 import view.View;
@@ -70,11 +72,15 @@ public class App {
 		
 		alarmSystem.addObserver(alarmObserver);
 		
+		NotificationSystem notificationSystem = new NotificationSystem();
+		ExpiredAlarmObserver expiredObserver = new ExpiredAlarmObserver(notificationSystem);
+		alarmVerifier.addObserver(expiredObserver);
+		
 		List<Runnable> scheduledTasks = new ArrayList<Runnable>();
 		scheduledTasks.add(alarmVerifier);
 		
 		SchedulerTaskExecutor scheduledExecutor = new SchedulerTaskExecutor(scheduledTasks);
 		scheduledExecutor.executeScheduledTasks();
-		
+
 	}
 }
