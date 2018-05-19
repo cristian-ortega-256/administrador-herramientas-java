@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-
 import Entities.Alarm;
 import controller.LoanController;
 import controller.RetreatController;
@@ -22,7 +21,7 @@ import view.RetreatView;
 import view.View;
 
 public class App {
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		View view = new View();
 		RetreatView rView = new RetreatView();
 		
@@ -75,6 +74,5 @@ public class App {
 		
 		SchedulerTaskExecutor scheduledExecutor = new SchedulerTaskExecutor(scheduledTasks);
 		scheduledExecutor.executeScheduledTasks();
-		
 	}
 }

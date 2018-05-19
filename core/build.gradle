@@ -8,10 +8,18 @@ plugins {
 dependencies {
     // This dependency is found on compile classpath of this component and consumers.
     compile 'com.google.guava:guava:23.0'
+    compile group: 'com.codoid.products', name: 'fillo', version: '1.18'
+	
+    
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
 }
+
+    task getDeps(type: Copy) {
+ 		 from sourceSets.main.runtimeClasspath
+  		into 'runtime/'
+	}
 
 jacocoTestReport {
     reports {
