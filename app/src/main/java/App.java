@@ -7,6 +7,7 @@ import Entities.Alarm;
 import controller.LoanController;
 import controller.RetreatController;
 import database.BorrowerDAO;
+import database.LoanDAO;
 import database.SupplyDAO;
 import database.ToolDAO;
 import model.LoanFormViewModel;
@@ -49,6 +50,10 @@ public class App {
 		vm.setAllTools(ts.getAllTools());
 		
 		LoanSystem loanSystem = new LoanSystem(ts.getAllTools());
+		loanSystem.setLoans(new LoanDAO().GetAll());
+		// TODO --> Add borrowed tools DAO
+		//loanSystem.setBorrowedTools(new ToolsDAO().GetBorrowedTools());
+		
 		LoanController lController = new LoanController(view,vm,loanSystem,adapterUI);
 		loanSystem.addObserver(new LoanObserver(alarmSystem));
 		loanSystem.addObserver(adapterUI);

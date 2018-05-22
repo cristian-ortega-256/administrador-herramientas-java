@@ -4,16 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+import com.codoid.products.exception.FilloException;
+
 import Entities.Loan;
 import Entities.Tool;
+import database.LoanDAO;
 import Entities.Borrower;
 
 public class LoanSystem extends Observable {
 	
 	private int loanNumberCounter = 0;
-	private ArrayList<Loan> loans;
+	private List<Loan> loans;
 	private List<Tool> allTools;
 	private List<Tool> borrowedTools;
+	private LoanDAO loanDao;
 	
 	public LoanSystem(List<Tool> allTools) {
 		super();
@@ -32,7 +36,7 @@ public class LoanSystem extends Observable {
 		}
 	}
 	
-	public void generateLoan(Tool tool, Borrower borrower) {
+	public void generateLoan(Tool tool, Borrower borrower) throws FilloException {
 		Loan _loan = new Loan(this.loanNumberCounter,tool, borrower);
 		this.addLoan(_loan);
 		this.notifyAllObservers(_loan);
@@ -67,12 +71,18 @@ public class LoanSystem extends Observable {
 	}
 	*/
 	
-	private void addLoan(Loan loan) {
+	private void addLoan(Loan loan) throws FilloException {
 		this.loans.add(loan);
+		LoanDAO ld = new LoanDAO();
+		ld.Add(loan);
 	}
 
-	public ArrayList<Loan> getLoans() {
+	public List<Loan> getLoans() {
 		return loans;
+	}
+
+	public void setLoans(List<Loan> loans) {
+		this.loans = loans;
 	}
 
 }
