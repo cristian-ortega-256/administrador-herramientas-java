@@ -63,4 +63,8 @@ public class NotificationSystem {
 		return false;
 	}
 
+	public List<Notification> getNotifications() {
+		return notifications;
+	}
+
 }

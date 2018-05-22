@@ -17,12 +17,18 @@ public class SupplyAlarmTest {
 	
 	@Before
 	public void prepareDependencies() {
-		this.supply =  new Supply("Lampara", 10, 10);
+		this.supply =  new Supply("Lampara", 10, 100);
 		this.supplyAlarm =  new SupplyAlarm(supply, new Date());
 	}
 	
 	@Test
 	public void getterTest() {
 		assertEquals(supplyAlarm.getSupply(),supply);
+	}
+	
+	@Test
+	public void testToString() {
+		String supplyAlarmToStringExpected = "SUPPLY ALARM: " + this.supplyAlarm.getSupply().toString() + "\n" + this.supplyAlarm.getExpirationDate().toString();
+		assertEquals(supplyAlarm.toString(),supplyAlarmToStringExpected);
 	}
 }

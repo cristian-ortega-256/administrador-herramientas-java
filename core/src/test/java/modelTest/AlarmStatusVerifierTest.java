@@ -3,6 +3,7 @@ package modelTest;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -11,6 +12,7 @@ import org.junit.Test;
 import Entities.Alarm;
 import Entities.Borrower;
 import Entities.Loan;
+import Entities.LoanAlarm;
 import Entities.Supply;
 import Entities.Tool;
 import Entities.ToolType;
@@ -71,6 +73,15 @@ public class AlarmStatusVerifierTest {
 		assertEquals(alarmVerifier.getActiveAlarms().size(),2);
 		
 		alarmVerifier.scannAlarms();
+	}
+	
+	@Test
+	public void alarmsSetterTest() {
+		ArrayList<Alarm> alarms = new ArrayList<Alarm>();
+		LoanAlarm loanAlarm = new LoanAlarm(this.loan, new Date());
+		alarms.add(loanAlarm);
+		this.alarmVerifier.setActiveAlarms(alarms);
+		assertEquals(this.alarmVerifier.getActiveAlarms().size(),1);
 	}
 
 }
