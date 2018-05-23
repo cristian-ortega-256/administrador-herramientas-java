@@ -29,9 +29,10 @@ public class AlarmSystemTest {
 	@Before
 	public void prepareDependencies() {
 		this.alarmSystem = new AlarmSystem(new ArrayList<Alarm>(), new ArrayList<Alarm>());
-		this.borrower = new Borrower("Pepe");
+		this.borrower = new Borrower("Goku");
 		this.tt = new ToolType("Martillo");
 		this.tool = new Tool("Martillo-1", tt);
+		this.tool.setId(1);
 		this.loan = new Loan(0, tool,borrower);
 		this.supply = new Supply("Lamparas",10,10);
 		this.date = new Date();

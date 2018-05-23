@@ -27,8 +27,9 @@ public class NotificationSystemTest {
 
 	@Before
 	public void prepareDependencies() {
-		this.borrower = new Borrower("Pepe");
-		this.tool = new Tool("Destornillador 1", new ToolType("Destornillador"));
+		this.borrower = new Borrower("Goku");
+		this.tool = new Tool("Destornillador #1", new ToolType("Destornillador"));
+		this.tool.setId(4);
 		this.loan = new Loan(0, this.tool, this.borrower);
 		this.loanAlarm = new LoanAlarm(this.loan, new Date());
 		

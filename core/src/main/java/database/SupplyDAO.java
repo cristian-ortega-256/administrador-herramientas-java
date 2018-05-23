@@ -14,6 +14,12 @@ public class SupplyDAO {
 		return parseSupplies(db.Read(query));
 	}
 	
+	public Supply GetOne(String id) throws FilloException {
+		String query = "SELECT * FROM Supplies WHERE ID='" + id + "'";
+		ExcelDB db = new ExcelDB();
+		return parseSupply(db.Read(query));
+	}
+	
 	public Supply parseSupply(Recordset rs) throws FilloException {
 		Supply supply = null;
 		while(rs.next()) {

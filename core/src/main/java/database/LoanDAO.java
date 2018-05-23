@@ -57,7 +57,7 @@ public class LoanDAO {
 		rs.close();
 		return loans;
 		
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -79,7 +79,7 @@ public class LoanDAO {
 			rs.close();
 			return loan;
 			
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
