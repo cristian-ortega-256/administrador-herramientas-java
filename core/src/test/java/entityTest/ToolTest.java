@@ -11,10 +11,12 @@ import Entities.ToolType;
 public class ToolTest {
 
 	private Tool tool;
+	private ToolType tt;
 	
 	@Before
 	public void prepareDependencies() {
-		this.tool = new Tool("Martillo - 03", ToolType.Martillo);
+		this.tt = new ToolType("Martillo");
+		this.tool = new Tool("Martillo - 03", tt);
 	}
 	
 	@Test

@@ -22,7 +22,7 @@ public class ExcelDB {
 		}catch (Exception e) {
 			this.rs = null;
 			return rs;
-		} 
+		}
 		finally {
 			//this.rs.close();
 			this.con.close();

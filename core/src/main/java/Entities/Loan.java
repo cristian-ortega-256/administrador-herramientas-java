@@ -28,6 +28,10 @@ public class Loan {
 		c.add(Calendar.DATE, 1);
 		return c.getTime();
 	}
+	
+	public void setLoanNumber(int number) {
+		this.loanNumber = number;
+	}
 
 	public int getLoanNumber() {
 		return loanNumber;
@@ -45,13 +49,22 @@ public class Loan {
 		return _creationDate;
 	}
 
-//	public Date get_expirationDate() {
-//		return _expirationDate;
-//	}
+	public Date get_expirationDate() {
+		return _expirationDate;
+	}
 	
 	@Override
 	public String toString() {
 		return "Id: " + this.loanNumber + " - Borrower: " + this._borrower.getName() + " - Tool: " + this._tool.getName();
 	}
+
+	public void set_creationDate(Date _creationDate) {
+		this._creationDate = _creationDate;
+	}
+
+	public void set_expirationDate(Date _expirationDate) {
+		this._expirationDate = _expirationDate;
+	}
+	
 	
 }

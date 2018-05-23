@@ -44,7 +44,7 @@ public class ExpiredAlarmObserverTest {
 		Date dateBefore1Days = cal.getTime();
 		
 		this.borrower = new Borrower("Pepe");
-		this.tool = new Tool("Destornillador", ToolType.Destornillador);
+		this.tool = new Tool("Destornillador 1", new ToolType("Destornillador"));
 		this.loan = new Loan(0, this.tool, this.borrower);
 		this.loanAlarm = new LoanAlarm(this.loan, dateBefore1Days);
 		

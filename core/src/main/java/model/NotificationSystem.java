@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 import Entities.Alarm;
 import Entities.Loan;
@@ -10,12 +11,17 @@ import Entities.Notification;
 import Entities.Supply;
 import Entities.SupplyAlarm;
 
-public class NotificationSystem {
+public class NotificationSystem extends Observable {
 	
 	private List<Notification> notifications;
 	
 	public NotificationSystem() {
 		this.notifications = new ArrayList<Notification>();
+	}
+	
+	private void notifyAllObservers() {
+		setChanged();
+        notifyObservers(this.notifications);
 	}
 
 	public void createNotification(Alarm alarm) {
@@ -33,6 +39,7 @@ public class NotificationSystem {
 		if(!hasNotificationAssociated(alarm)) {
 			LoanAlarm loanAlarm = (LoanAlarm)alarm;
 			this.notifications.add(new Notification("Loan Delayed", this.generateLoanMessage(loanAlarm.getLoan()), alarm));
+			this.notifyAllObservers();
 		}
 	}
 	
@@ -40,6 +47,7 @@ public class NotificationSystem {
 		if(!hasNotificationAssociated(alarm)) {
 			SupplyAlarm supplyAlarm = (SupplyAlarm)alarm;
 			this.notifications.add(new Notification("Supply Stock Alert", this.generateSupplyMessage(supplyAlarm.getSupply()), alarm));
+			this.notifyAllObservers();
 		}
 	}
 

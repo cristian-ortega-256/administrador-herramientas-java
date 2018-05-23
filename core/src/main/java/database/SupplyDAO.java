@@ -15,10 +15,13 @@ public class SupplyDAO {
 	}
 	
 	public Supply parseSupply(Recordset rs) throws FilloException {
-		String name = rs.getField("Name");
-		int stock = Integer.parseInt(rs.getField("Stock"));
-		int minimumStock = Integer.parseInt(rs.getField("MinimumStock"));
-		Supply supply = new Supply(name, stock, minimumStock);
+		Supply supply = null;
+		while(rs.next()) {
+			String name = rs.getField("Name");
+			int stock = Integer.parseInt(rs.getField("Stock"));
+			int minimumStock = Integer.parseInt(rs.getField("MinimumStock"));
+			supply = new Supply(name, stock, minimumStock);	
+		}
 		rs.close();
 		return supply;
 	}

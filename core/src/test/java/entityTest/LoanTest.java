@@ -17,12 +17,14 @@ public class LoanTest {
 	private Borrower borrower;
 	private Tool tool;
 	private Loan loan;
+	private ToolType tt;
 	private Date d;
 	
 	@Before
 	public void prepareDependencies() {
 		this.borrower =  new Borrower("Goku");
-		this.tool = new Tool("Martillo-1", ToolType.Martillo);
+		this.tt = new ToolType("Martillo");
+		this.tool = new Tool("Martillo-1", this.tt);
 		this.loan = new Loan(0, tool, borrower);
 		this.d = new Date();
 	}

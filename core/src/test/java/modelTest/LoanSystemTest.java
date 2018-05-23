@@ -19,6 +19,7 @@ public class LoanSystemTest {
 	private ToolSystem tools;
 	private Borrower borrower;
 	private Tool tool;
+	private ToolType tt;
 	private LoanSystem loanSystem;
 	private List<Tool> listTools;
 	
@@ -27,9 +28,10 @@ public class LoanSystemTest {
 		this.tools = new ToolSystem();
 		this.borrower = new Borrower("Pepe");
 		this.listTools = new ArrayList<Tool>();
-		this.listTools.add(new Tool("Martillo",ToolType.Martillo));
-		this.listTools.add(new Tool("Destornilador",ToolType.Destornillador));
-		this.listTools.add(new Tool("Taladro",ToolType.Taladro));
+		this.tt = new ToolType("Martillo");
+		this.listTools.add(new Tool("Martillo", tt));
+		this.listTools.add(new Tool("Destornilador", tt));
+		this.listTools.add(new Tool("Taladro", tt));
 		this.tools.setTools(listTools);
 		this.tool = tools.getAllTools().get(0);
 		this.loanSystem = new LoanSystem(tools.getAllTools());
@@ -39,7 +41,7 @@ public class LoanSystemTest {
 	public void testLoanGenerationSucces() {	
 		assertEquals(loanSystem.getLoans().size(), 0);
 		loanSystem.checkLoanGeneration(tool, borrower);
-        assertEquals(loanSystem.getLoans().size(), 1);
+		assertEquals(loanSystem.getLoans().size(), 1);
     }
 	
 	@Test
