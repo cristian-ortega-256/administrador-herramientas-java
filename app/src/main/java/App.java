@@ -51,6 +51,8 @@ public class App {
 		
 		LoanSystem loanSystem = new LoanSystem(ts.getAllTools());
 		loanSystem.setLoans(new LoanDAO().GetAll());
+		loanSystem.setLastLoanNumber();
+		
 		// TODO --> Add borrowed tools DAO
 		//loanSystem.setBorrowedTools(new ToolsDAO().GetBorrowedTools());
 		

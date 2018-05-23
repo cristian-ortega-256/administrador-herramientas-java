@@ -76,4 +76,22 @@ public class LoanDAOTest {
 		}
 	}
 	
+	@Test
+	public void testGetLastFreeNumberLoan() {
+		try {
+			assertEquals(this.listDAO.size(), lDao.GetLastFreeLoanNumber());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+//	@Test
+//	public void testGetLastFreeNumberLoanEmpty() {
+//		try {
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
 }

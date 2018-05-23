@@ -21,6 +21,7 @@ public class LoanSystem extends Observable {
 	
 	public LoanSystem(List<Tool> allTools) {
 		super();
+		this.loanDao = new LoanDAO();
 		this.loans = new ArrayList<Loan>();
 		this.allTools = allTools;
 		this.borrowedTools = new ArrayList<Tool>();
@@ -37,6 +38,7 @@ public class LoanSystem extends Observable {
 	}
 	
 	public void generateLoan(Tool tool, Borrower borrower) throws FilloException {
+		//this.loanNumberCounter = this.loanDao.GetLastFreeLoanNumber();
 		Loan _loan = new Loan(this.loanNumberCounter,tool, borrower);
 		this.addLoan(_loan);
 		this.notifyAllObservers(_loan);
@@ -73,8 +75,7 @@ public class LoanSystem extends Observable {
 	
 	private void addLoan(Loan loan) throws FilloException {
 		this.loans.add(loan);
-		LoanDAO ld = new LoanDAO();
-		ld.Add(loan);
+		this.loanDao.Add(loan);
 	}
 
 	public List<Loan> getLoans() {
@@ -83,6 +84,10 @@ public class LoanSystem extends Observable {
 
 	public void setLoans(List<Loan> loans) {
 		this.loans = loans;
+	}
+	
+	public void setLastLoanNumber() throws FilloException {
+		this.loanNumberCounter = this.loanDao.GetLastFreeLoanNumber();
 	}
 
 }
