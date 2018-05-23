@@ -22,4 +22,5 @@ Tools administrator developed for the UNGS under the PP2 course.
 * ./gradlew check - Checks the integrity of all the dependencies
 * ./gradlew jacocoTestReport - Updates the local code coverage
 * ./gradlew coveralls - Updates the online code coverage
+* ./gradlew getDeps - Get the library dependencies
 

@@ -64,4 +64,13 @@ public class AlarmSystemTest {
 		assertEquals(alarmSystem.getActiveAlarms().size(),1);
 	}
 	
+	@Test
+	public void testDuplicatedSupplyAlarmCreation() {
+		assertEquals(alarmSystem.getActiveAlarms().size(),0);
+		alarmSystem.checkSupplyAlarmCreation(supply);
+		assertEquals(alarmSystem.getActiveAlarms().size(),1);
+		alarmSystem.checkSupplyAlarmCreation(supply);
+		assertEquals(alarmSystem.getActiveAlarms().size(),1);
+	}
+	
 }
