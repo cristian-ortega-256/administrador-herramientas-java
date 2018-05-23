@@ -50,7 +50,7 @@ public class RetreatView {
 	 */
 	private void initialize() {
 		frame = new JFrame("RETREATS");
-		frame.setBounds(100, 400, 450, 300);
+		frame.setBounds(0, 400, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		

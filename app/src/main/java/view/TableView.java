@@ -49,7 +49,7 @@ public class TableView{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(550, 100, 670, 600);
+		frame.setBounds(450, 100, 645, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
