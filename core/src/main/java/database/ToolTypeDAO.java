@@ -16,7 +16,7 @@ public class ToolTypeDAO {
 	public ToolType parseToolType(Recordset rs) throws FilloException {
 		try {
 			ToolType tt = null;
-			while(rs.next()) {
+			while(rs != null && rs.next()) {
 				String name = rs.getField("NAME");
 				tt = new ToolType(name);
 			}

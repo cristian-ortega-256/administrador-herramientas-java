@@ -75,7 +75,7 @@ public class LoanDAOTest {
 			assertEquals(null, this.l);
 		}
 	}
-	
+	/*
 	@Test
 	public void testGetLastFreeNumberLoan() {
 		try {
@@ -84,6 +84,7 @@ public class LoanDAOTest {
 			e.printStackTrace();
 		}
 	}
+	*/
 	
 //	@Test
 //	public void testGetLastFreeNumberLoanEmpty() {
