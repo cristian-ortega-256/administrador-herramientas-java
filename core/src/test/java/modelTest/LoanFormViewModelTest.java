@@ -22,6 +22,7 @@ public class LoanFormViewModelTest {
 	private ToolSystem ts;
 	private List<Tool> listTools;
 	private List<Borrower> list;
+	private ToolType tt;
 	
 	@Before
 	public void prepareDependencies() {
@@ -35,9 +36,10 @@ public class LoanFormViewModelTest {
 		this.ws.setWorkers(list);
 		this.ts = new ToolSystem();
 		this.listTools = new ArrayList<Tool>();
-		this.listTools.add(new Tool("Martillo",ToolType.Martillo));
-		this.listTools.add(new Tool("Destornilador",ToolType.Destornillador));
-		this.listTools.add(new Tool("Taladro",ToolType.Taladro));
+		this.tt = new ToolType("Martillo");
+		this.listTools.add(new Tool("Martillo", tt));
+		this.listTools.add(new Tool("Destornilador",tt));
+		this.listTools.add(new Tool("Taladro",tt));
 		this.ts.setTools(listTools);
 	}
 	

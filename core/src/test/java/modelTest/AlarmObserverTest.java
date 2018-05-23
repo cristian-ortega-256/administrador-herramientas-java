@@ -21,6 +21,7 @@ public class AlarmObserverTest {
 	
 	private Borrower borrower;
 	private Tool tool;
+	private ToolType tt;
 	private Loan loan;
 	private AlarmSystem alarmSystem;
 	private AlarmStatusVerifier alarmVerifier;
@@ -29,7 +30,8 @@ public class AlarmObserverTest {
 	@Before
 	public void prepareDependencies() {
 		this.borrower = new Borrower("Pepe");
-		this.tool = new Tool("Martillo-1",ToolType.Martillo);
+		this.tt = new ToolType("Martillo");
+		this.tool = new Tool("Martillo-1", tt);
 		this.loan = new Loan(1,tool,borrower);
 		this.alarmSystem = new AlarmSystem(new ArrayList<Alarm>(), new ArrayList<Alarm>());
 		this.alarmVerifier = new AlarmStatusVerifier();

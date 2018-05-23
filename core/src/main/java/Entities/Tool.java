@@ -4,6 +4,7 @@ import Entities.ToolType;
 
 public class Tool {
 	
+	private int id;
 	private String name;
 	private ToolType type;
 	
@@ -28,6 +29,15 @@ public class Tool {
 //		this.type = type;
 //	}
 	
+	public int getId() {
+		return id;
+	}
+
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
 		return name;
