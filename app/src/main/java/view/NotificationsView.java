@@ -62,7 +62,7 @@ public class NotificationsView implements Observer{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("NOTIFICATIONS");
 		frame.setBounds(1220, 100, width, height+20);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
