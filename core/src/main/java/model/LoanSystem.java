@@ -9,6 +9,7 @@ import com.codoid.products.exception.FilloException;
 import Entities.Loan;
 import Entities.Tool;
 import database.LoanDAO;
+import database.LoanLogDAO;
 import Entities.Borrower;
 
 public class LoanSystem extends Observable {
@@ -18,6 +19,7 @@ public class LoanSystem extends Observable {
 	private List<Tool> allTools;
 	private List<Tool> borrowedTools;
 	private LoanDAO loanDao;
+	private LoanLogDAO loanLogDao;
 	
 	public LoanSystem(List<Tool> allTools) {
 		super();
@@ -25,36 +27,51 @@ public class LoanSystem extends Observable {
 		this.loans = new ArrayList<Loan>();
 		this.allTools = allTools;
 		this.borrowedTools = new ArrayList<Tool>();
+		this.loanLogDao = new  LoanLogDAO();
 	}
 	
 	public void checkLoanGeneration(Tool tool, Borrower borrower) {
 		try {
 			isBorrowedTool(tool);
-			generateLoan(tool,borrower);
+			this.loanLogDao.Add(generateLoan(tool,borrower), "Apertura");
 		}
 	 	catch(Exception e){
-	 		e.printStackTrace();
+	 		//e.printStackTrace();
+	 		System.out.println(e.getMessage());
 		}
 	}
 	
-	public void generateLoan(Tool tool, Borrower borrower) throws FilloException {
-		//this.loanNumberCounter = this.loanDao.GetLastFreeLoanNumber();
+	public void closeLoan(Loan loan) throws FilloException {
+		// TODO --> Test
+		this.removeLoan(loan);
+		this.removeToolFromBorrowed(loan.get_tool());
+		this.loanDao.delete(loan.getLoanNumber());
+		this.loanLogDao.Add(loan, "Cierre");
+	}
+	
+	public Loan generateLoan(Tool tool, Borrower borrower) throws FilloException {
 		Loan _loan = new Loan(this.loanNumberCounter,tool, borrower);
 		this.addLoan(_loan);
 		this.notifyAllObservers(_loan);
 		//this.notifyAllObservers(this.loans);
 		this.incrementLoanNumberCounter();
 		setToolAsBorrowed(tool);
+		return _loan;
 	}
 	
 	public void isBorrowedTool(Tool t) throws Exception{
-		if(this.borrowedTools.contains(t)) {
-			throw new Exception("Tool is already borrowed");
+		for(Tool tool:this.borrowedTools) {
+			if(tool.equals(t))
+				throw new Exception("Tool is already borrowed");
 		}
 	}
 	
-	private void setToolAsBorrowed(Tool t) {
-		this.borrowedTools.add(t);
+	private void removeLoan(Loan loan) {
+		this.loans.remove(this.loans.indexOf(loan));
+	}
+	
+	private void removeToolFromBorrowed(Tool t) {
+		this.borrowedTools.remove(this.borrowedTools.indexOf(t));
 	}
 	
 	private void incrementLoanNumberCounter() {
@@ -84,8 +101,20 @@ public class LoanSystem extends Observable {
 
 	public void setLoans(List<Loan> loans) {
 		this.loans = loans;
+		this.generateBorrowedTools(loans);
 	}
 	
+	private void generateBorrowedTools(List<Loan> loans2) {
+		this.borrowedTools = new ArrayList<Tool>();
+		for(Loan loan:loans) {
+			this.setToolAsBorrowed(loan.get_tool());
+		}
+	}
+	
+	private void setToolAsBorrowed(Tool t) {
+		this.borrowedTools.add(t);
+	}
+
 	public void setLastLoanNumber() throws FilloException {
 		this.loanNumberCounter = this.loanDao.GetLastFreeLoanNumber();
 	}

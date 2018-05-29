@@ -35,7 +35,7 @@ public class ToolDAO {
 			HashMap<String,String> dataSet = this.generateDataHash(rs);
 			if(!this.isValidSet(dataSet))
 				return null;
-			tool = this.generateTool(dataSet);	
+			tool = this.generateTool(dataSet);
 		}
 		rs.close();
 		return tool;
