@@ -33,7 +33,7 @@ public class LoanSystem extends Observable {
 			generateLoan(tool,borrower);
 		}
 	 	catch(Exception e){
-	 		System.out.println(e.getMessage());
+	 		e.printStackTrace();
 		}
 	}
 	
