@@ -4,6 +4,10 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JScrollPane;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -17,13 +21,19 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.EmptyBorder;
+
+import Entities.Notification;
+
 import javax.swing.UIManager;
 
-public class NotificationsView {
+public class NotificationsView implements Observer{
 
+	private ArrayList<Notification> notifications;
 	private JFrame frame;
 	private JPanel panel;
 	private JScrollPane sPanel;
+	private int width = 585;
+	private int height = 580;
 
 	/**
 	 * Launch the application.
@@ -52,10 +62,8 @@ public class NotificationsView {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		int width = 255;
-		int height = 500;
-		frame.setBounds(100, 100, width, height+20);
+		frame = new JFrame("NOTIFICATIONS");
+		frame.setBounds(1220, 100, width, height+20);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -63,37 +71,10 @@ public class NotificationsView {
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(0, 0, width, height);
 		panel.setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
 		
 		// NOTIFICATIONS SECTION
-        // TODO --> Show notifications dynamically
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
-		panel.add(Notification.generateNotification(),gbc);
+		this.notifications = new ArrayList<Notification>();
+		this.checkNotificationsRender();
 		
 		// SCROLL SECTION
 		sPanel = new JScrollPane(panel);
@@ -129,6 +110,43 @@ public class NotificationsView {
 
 	public void show() {
 		this.frame.setVisible(true);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		this.notifications = (ArrayList<Notification>) arg;
+		this.checkNotificationsRender();
+	}
+
+	private void checkNotificationsRender() {
+		if(this.notifications.size() == 0) {
+			this.renderEmptyMessage();						
+		}
+		else {
+			this.renderNotifications();
+		}
+	}
+
+	private void renderEmptyMessage() {
+		panel.removeAll();
+		GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+		panel.add(NotificationComponent.generateNotification("There are no notifications avaiable..",""),gbc);
+		
+	}
+
+	private void renderNotifications() {
+		panel.removeAll();
+		GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        for (int i=0; i<this.notifications.size(); i++){
+        	Notification n = this.notifications.get(i);
+            panel.add(NotificationComponent.generateNotification(n.getTitle(),n.getMessage()),gbc);        	
+        }
+        this.panel.revalidate();
+        this.panel.repaint();
 	}	
 
 }

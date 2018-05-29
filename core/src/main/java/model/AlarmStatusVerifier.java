@@ -51,8 +51,8 @@ public class AlarmStatusVerifier extends Observable implements Runnable{
 		return this.activeAlarms;
 	}
 
-	public void setActiveAlarms(List<Alarm> activeAlarms) {
-		this.activeAlarms = activeAlarms;
-	}
+//	public void setActiveAlarms(List<Alarm> activeAlarms) {
+//		this.activeAlarms = activeAlarms;
+//	}
 	
 }

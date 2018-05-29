@@ -23,9 +23,10 @@ public class LoanAlarmTest {
 	
 	@Before
 	public void prepareDependencies() {
-		this.borrower = new Borrower("Pepe");
+		this.borrower = new Borrower("Goku");
 		this.tt = new ToolType("Martillo");
 		this.tool = new Tool("Martillo-1", this.tt);
+		this.tool.setId(1);
 		this.loan = new Loan(0, tool, borrower);
 		this.loanAlarm = new LoanAlarm(loan, new Date());
 	}

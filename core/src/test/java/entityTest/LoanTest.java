@@ -26,6 +26,7 @@ public class LoanTest {
 		this.tt = new ToolType("Martillo");
 		this.tool = new Tool("Martillo-1", this.tt);
 		this.loan = new Loan(0, tool, borrower);
+		this.loan.setLoanNumber(0);
 		this.d = new Date();
 	}
 	

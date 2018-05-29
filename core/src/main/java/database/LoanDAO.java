@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -37,6 +38,27 @@ public class LoanDAO {
 		ExcelDB db = new ExcelDB();
 		return parseLoan(db.Read(query));
 	}
+	
+	public int GetLastFreeLoanNumber() throws FilloException{
+		try {
+			List<Loan> loans = this.GetAll();
+			if (loans.isEmpty())
+				return 0;
+			else {
+				loans.sort(new Comparator<Loan>() {
+					public int compare(Loan l1, Loan l2) {
+						return l1.getLoanNumber() - l2.getLoanNumber();
+					}
+				});
+				int index = loans.size() - 1;
+				return loans.get(index).getLoanNumber() + 1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+		
+	}
 
 	
 	//TODO -> Ver esto, ya que hay que ver si se labura con ID o con nombre las herramientas y los trabajadores. Necesario saber hacer los GetOne
@@ -57,7 +79,7 @@ public class LoanDAO {
 		rs.close();
 		return loans;
 		
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -79,7 +101,7 @@ public class LoanDAO {
 			rs.close();
 			return loan;
 			
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}

@@ -26,6 +26,7 @@ import model.AlarmSystem;
 import model.BorrowerSystem;
 import model.ExpiredAlarmObserver;
 import view.AdapterUI;
+import view.NotificationsView;
 import view.RetreatView;
 import view.View;
 
@@ -51,6 +52,8 @@ public class App {
 		
 		LoanSystem loanSystem = new LoanSystem(ts.getAllTools());
 		loanSystem.setLoans(new LoanDAO().GetAll());
+		loanSystem.setLastLoanNumber();
+		
 		// TODO --> Add borrowed tools DAO
 		//loanSystem.setBorrowedTools(new ToolsDAO().GetBorrowedTools());
 		
@@ -94,5 +97,9 @@ public class App {
 		
 		SchedulerTaskExecutor scheduledExecutor = new SchedulerTaskExecutor(scheduledTasks);
 		scheduledExecutor.executeScheduledTasks();
+		
+		NotificationsView notificationsView = new NotificationsView();
+		notificationsView.show();
+		notificationSystem.addObserver(notificationsView);
 	}
 }

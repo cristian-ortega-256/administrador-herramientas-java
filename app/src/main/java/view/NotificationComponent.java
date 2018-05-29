@@ -10,9 +10,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.EmptyBorder;
 
-public class Notification {
+public class NotificationComponent {
 	
-	public static JPanel generateNotification() {
+	public static JPanel generateNotification(String title,String subtitle) {
 		JPanel wrapper = new JPanel();
 		wrapper.setBackground(Color.WHITE);
 		AbstractBorder brdr = new TextBubbleBorder(Color.BLACK,2,16,0);
@@ -20,11 +20,11 @@ public class Notification {
 		wrapper.setLayout(new GridBagLayout());
 		
 		GridBagConstraints gbc = generateGrid();
-		JLabel lblTitle = generateLabel("Notification Title", true);
+		JLabel lblTitle = generateLabel(title, true);
 		wrapper.add(lblTitle, gbc);
 		
 		GridBagConstraints gbc2 = generateGrid();
-		JLabel lblSubTitle = generateLabel("This is a notification Subtitle...", false);
+		JLabel lblSubTitle = generateLabel(subtitle, false);
 		wrapper.add(lblSubTitle, gbc2);
 		
 		JPanel generalContainer = new JPanel();

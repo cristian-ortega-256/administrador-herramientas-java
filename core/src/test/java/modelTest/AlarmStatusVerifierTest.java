@@ -36,11 +36,12 @@ public class AlarmStatusVerifierTest {
 	
 	@Before
 	public void prepareDependencies() {
-		new Borrower("Pepe");
+		new Borrower("Goku");
 		this.supply = new Supply("Tornillos",100,500);
-		this.borrower = new Borrower("Pepe");
+		this.borrower = new Borrower("Goku");
 		this.tt = new ToolType("Martillo");
 		this.tool = new Tool("Martillo-1", tt);
+		this.tool.setId(1);
 		this.loan = new Loan(0, tool,borrower);
 		this.alarmSystem = new AlarmSystem(new ArrayList<Alarm>(), new ArrayList<Alarm>());
 		this.alarmVerifier = new AlarmStatusVerifier();

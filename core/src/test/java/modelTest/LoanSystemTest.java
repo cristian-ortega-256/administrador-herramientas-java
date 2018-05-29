@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Entities.Borrower;
+import Entities.Loan;
 import Entities.Tool;
 import Entities.ToolType;
 import model.LoanSystem;
@@ -26,7 +27,7 @@ public class LoanSystemTest {
 	@Before
 	public void prepareDependencies() {
 		this.tools = new ToolSystem();
-		this.borrower = new Borrower("Pepe");
+		this.borrower = new Borrower("Goku");
 		this.listTools = new ArrayList<Tool>();
 		this.tt = new ToolType("Martillo");
 		this.listTools.add(new Tool("Martillo", tt));
@@ -34,7 +35,9 @@ public class LoanSystemTest {
 		this.listTools.add(new Tool("Taladro", tt));
 		this.tools.setTools(listTools);
 		this.tool = tools.getAllTools().get(0);
+		this.tool.setId(1);
 		this.loanSystem = new LoanSystem(tools.getAllTools());
+		this.loanSystem.setLoans(new ArrayList<Loan>());
 	}
 	
 	@Test 
