@@ -57,9 +57,9 @@ public class ToolDAO {
 	
 	private Tool generateTool(HashMap<String, String> dataSet) {
 		try {
-			String name = dataSet.get("NAME");
+			String name = dataSet.get("Nombre");
 			ToolTypeDAO ttDao = new ToolTypeDAO();
-			ToolType tt = ttDao.GetOne(dataSet.get("IdToolType"));
+			ToolType tt = ttDao.GetOne(dataSet.get("Tipo de herramienta"));
 			Tool tool = new Tool(name, tt);
 			if(!this.isParsable(dataSet.get("ID")))
 				return null;

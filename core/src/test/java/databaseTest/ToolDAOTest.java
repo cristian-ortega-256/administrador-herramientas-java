@@ -28,14 +28,8 @@ public class ToolDAOTest {
 			this.tt = new ToolType("Martillos");
 			this.lTool = new ArrayList<Tool>();
 			this.lTool.add(new Tool("Taladro #1", this.tt));
-			this.lTool.add(new Tool("Taladro #2", this.tt));
-			this.lTool.add(new Tool("Taladro #3", this.tt));
 			this.lTool.add(new Tool("Martillo #1", this.tt));
-			this.lTool.add(new Tool("Martillo #2", this.tt));
-			this.lTool.add(new Tool("Martillo #3", this.tt));
 			this.lTool.add(new Tool("Destornillador #1", this.tt));
-			this.lTool.add(new Tool("Destornillador #2", this.tt));
-			this.lTool.add(new Tool("Destornillador #3", this.tt));
 			this.tool = tDao.GetOne("1");
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -8,7 +8,7 @@ import Entities.ToolType;
 public class ToolTypeDAO {
 
 	public ToolType GetOne(String IdToolType) throws FilloException { 
-		String query = "SELECT * FROM ToolTypes WHERE ID=" + IdToolType + "";
+		String query = "SELECT * FROM TipoHerramienta WHERE ID=" + IdToolType + "";
 		ExcelDB db = new ExcelDB();
 		return parseToolType(db.Read(query));
 	}
@@ -17,7 +17,7 @@ public class ToolTypeDAO {
 		try {
 			ToolType tt = null;
 			while(rs != null && rs.next()) {
-				String name = rs.getField("NAME");
+				String name = rs.getField("Nombre");
 				tt = new ToolType(name);
 			}
 			rs.close();

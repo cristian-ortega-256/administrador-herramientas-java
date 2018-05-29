@@ -24,9 +24,7 @@ public class BorrowerDAOTest {
 			this.bDao = new BorrowerDAO();
 			this.listBorrowers = new ArrayList<Borrower>();
 			this.listBorrowers.add(new Borrower("Goku"));
-			this.listBorrowers.add(new Borrower("Trunks"));
 			this.listBorrowers.add(new Borrower("Vegeta"));
-			this.listBorrowers.add(new Borrower("Gohan"));
 			this.listBorrowersDAO = new ArrayList<Borrower>();
 			this.listBorrowersDAO = bDao.GetAll();
 			this.borrower = bDao.GetOne("Goku");
@@ -42,6 +40,8 @@ public class BorrowerDAOTest {
 	
 	@Test
 	public void testGetOne() {
+		System.out.println(this.borrower.getName());
+		System.out.println(this.listBorrowers.get(0).getName());
 		assertEquals(this.borrower.getName(), this.listBorrowers.get(0).getName());
 	}
 	

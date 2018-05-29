@@ -75,16 +75,16 @@ public class LoanDAOTest {
 			assertEquals(null, this.l);
 		}
 	}
-	/*
+	
 	@Test
 	public void testGetLastFreeNumberLoan() {
 		try {
-			assertEquals(this.listDAO.size(), lDao.GetLastFreeLoanNumber());
+			//assertEquals(listDAO.get(listDAO.size()-1).getLoanNumber()+1, lDao.GetLastFreeLoanNumber());
+			assertEquals(listDAO.get(2).getLoanNumber()+1, lDao.GetLastFreeLoanNumber());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	*/
 	
 //	@Test
 //	public void testGetLastFreeNumberLoanEmpty() {
