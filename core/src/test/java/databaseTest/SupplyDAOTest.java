@@ -26,7 +26,7 @@ public class SupplyDAOTest {
 			this.list = new ArrayList<Supply>();
 			this.list.add(new Supply("Tornillos", 100, 50));
 			this.list.add(new Supply("Clavos", 100, 50));
-			this.supply = this.sDao.GetOne("1");
+			this.supply = this.sDao.GetOne("Tornillos");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		

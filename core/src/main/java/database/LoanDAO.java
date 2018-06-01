@@ -23,8 +23,13 @@ public class LoanDAO {
 		String query = "INSERT INTO Loans(Numero, Herramienta, Trabajador, Fecha, Expiracion) VALUES ('"+ loan.getLoanNumber() + "',"
 																							+ "'"+ loan.get_tool().getId() +"',"
 																									+ "'"+ loan.get_borrower().getName() +"',"
-																											+ "'"+ loan.get_creationDate() +"',"
-																													+ "'"+ loan.get_expirationDate() +"')";
+																											+ "'"+ loan.get_creationDate() +"')";
+		ExcelDB db = new ExcelDB();
+		db.Write(query);
+	}
+	
+	public void delete(int id) throws FilloException {
+		String query = "DELETE FROM Loans WHERE Numero=" + id;
 		ExcelDB db = new ExcelDB();
 		db.Write(query);
 	}
@@ -106,7 +111,6 @@ public class LoanDAO {
 		Loan loan = new Loan(Integer.parseInt(dataSet.get("Numero")), tool, borrower);
 		DateFormat df = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
 		loan.set_creationDate(df.parse(dataSet.get("Fecha")));
-		loan.set_expirationDate(df.parse(dataSet.get("Expiracion")));
 		return loan;
 	}
 

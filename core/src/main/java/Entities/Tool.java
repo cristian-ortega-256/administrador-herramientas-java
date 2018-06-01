@@ -8,6 +8,12 @@ public class Tool {
 	private String name;
 	private ToolType type;
 	
+	public Tool(int id, String name, ToolType toolType) {
+		this.id = id;
+		this.name = name;
+		this.type = toolType;
+	}
+	
 	public Tool(String name, ToolType toolType) {
 		this.name = name;
 		this.type = toolType;
@@ -41,6 +47,10 @@ public class Tool {
 	@Override
 	public String toString() {
 		return name;
+	}
+	
+	public boolean equals(Tool t) {
+		return this.id == t.id ? true : false;
 	}
 	
 }

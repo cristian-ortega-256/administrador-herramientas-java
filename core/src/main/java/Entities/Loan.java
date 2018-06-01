@@ -12,21 +12,12 @@ public class Loan {
 	private Tool _tool;
 	private Borrower _borrower;
 	private Date _creationDate;
-	private Date _expirationDate;
 	
 	public Loan(int loanNumber, Tool tool, Borrower borrower) {
 		this.loanNumber = loanNumber;
 		this._tool = tool;
 		this._borrower = borrower;
 		this._creationDate = new Date();
-		this._expirationDate = generateExpirationDate(this._creationDate);
-	}
-	
-	private Date generateExpirationDate(Date dt) {
-		Calendar c = Calendar.getInstance(); 
-		c.setTime(dt); 
-		c.add(Calendar.DATE, 1);
-		return c.getTime();
 	}
 	
 	public void setLoanNumber(int number) {
@@ -48,10 +39,6 @@ public class Loan {
 	public Date get_creationDate() {
 		return _creationDate;
 	}
-
-	public Date get_expirationDate() {
-		return _expirationDate;
-	}
 	
 	@Override
 	public String toString() {
@@ -60,10 +47,6 @@ public class Loan {
 
 	public void set_creationDate(Date _creationDate) {
 		this._creationDate = _creationDate;
-	}
-
-	public void set_expirationDate(Date _expirationDate) {
-		this._expirationDate = _expirationDate;
 	}
 	
 	
