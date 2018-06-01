@@ -1,5 +1,7 @@
 package database;
 
+import java.util.ArrayList;
+
 import com.codoid.products.exception.FilloException;
 import com.codoid.products.fillo.Connection;
 import com.codoid.products.fillo.Fillo;
@@ -13,6 +15,11 @@ public class ExcelDB {
 	public ExcelDB() throws FilloException{
 		Fillo fillo = new Fillo();
 		this.con = fillo.getConnection("excel/Test.xlsx");
+	}
+	
+	public ExcelDB(String path) throws FilloException{
+		Fillo fillo = new Fillo();
+		this.con = fillo.getConnection(path);
 	}
 	
 	public Recordset Read(String query) {
@@ -39,4 +46,18 @@ public class ExcelDB {
 			this.con.close();
 		}
 	}
+	
+	public ArrayList<String> getExcelSheetNames() {
+		return this.con.getMetaData().getTableNames();
+	}
+	
+	public ArrayList<String> getSheetColumns(String tableName) throws FilloException {
+		Recordset rs = this.Read("SELECT * FROM " + tableName);
+		ArrayList<String> columns = rs.getFieldNames(); 
+		rs.close();
+		return columns;
+	}
+	
+	// TODO --> Corroborar el nombre de las hojas de excel
+	// TODO --> Corroborar que por cada hoja esten las columnas pertinentes
 }

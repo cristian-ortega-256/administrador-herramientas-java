@@ -14,7 +14,8 @@ import Entities.SupplyAlarm;
 
 public class AlarmSystem extends Observable{
 	
-	private int defaultExpirationTime = 1;
+	//TODO --> change the defaultExpirationTime for 1
+	final static int defaultExpirationTime = 0;
 	
 	private List<Alarm> activeAlarms;
 	private List<Alarm> allAlarms;

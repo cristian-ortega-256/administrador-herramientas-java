@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="gradle/wrapper/gradle-wrapper.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="core/runtime/fillo-1.18.jar"/>
+	<classpathentry kind="lib" path="dependencies/system-rules-1.3.0.jar"/>
 	<classpathentry kind="output" path="build/classes/java/test"/>
 </classpath>

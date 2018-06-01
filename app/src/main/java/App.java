@@ -7,6 +7,8 @@ import Entities.Alarm;
 import controller.LoanController;
 import controller.RetreatController;
 import database.BorrowerDAO;
+import database.ExcelSheets;
+import database.ExcelVerifier;
 import database.LoanDAO;
 import database.SupplyDAO;
 import database.ToolDAO;
@@ -24,6 +26,8 @@ import model.AlarmObserver;
 import model.AlarmStatusVerifier;
 import model.AlarmSystem;
 import model.BorrowerSystem;
+import model.ErrorObserver;
+import model.ErrorSystem;
 import model.ExpiredAlarmObserver;
 import view.AdapterUI;
 import view.NotificationsView;
@@ -31,7 +35,18 @@ import view.RetreatView;
 import view.View;
 
 public class App {
-	public static void main(String[] args) throws FilloException{
+	public static void main(String[] args) throws Exception{
+		
+		ErrorSystem errorSystem = new ErrorSystem(true);
+		ErrorObserver errorObserver = new ErrorObserver(errorSystem);
+		
+		ExcelVerifier verifier = new ExcelVerifier();
+		verifier.addObserver(errorObserver);
+		verifier.verifyExcelFile("excel/Test.xlsx");
+		
+		verifier.verifyExcelSheets();
+		verifier.verifyAllSheetsColumns();
+		
 		View view = new View();
 		RetreatView rView = new RetreatView();
 		
@@ -101,5 +116,6 @@ public class App {
 		NotificationsView notificationsView = new NotificationsView();
 		notificationsView.show();
 		notificationSystem.addObserver(notificationsView);
+		
 	}
 }

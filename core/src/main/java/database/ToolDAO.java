@@ -33,9 +33,8 @@ public class ToolDAO {
 		Tool tool = null;
 		while(rs != null && rs.next()) {
 			HashMap<String,String> dataSet = this.generateDataHash(rs);
-			if(!this.isValidSet(dataSet))
-				return null;
-			tool = this.generateTool(dataSet);
+			if(this.isValidSet(dataSet))
+				tool = this.generateTool(dataSet);
 		}
 		rs.close();
 		return tool;
@@ -44,10 +43,10 @@ public class ToolDAO {
 	public List<Tool> parseTools(Recordset rs) throws FilloException{
 		List<Tool> tools = new ArrayList<Tool>();
 		while (rs != null && rs.next()) {
+			Tool t = null;
 			HashMap<String,String> dataSet = this.generateDataHash(rs);
-			if(!this.isValidSet(dataSet))
-				return null;
-			Tool t = this.generateTool(dataSet);
+			if(this.isValidSet(dataSet))
+				t = this.generateTool(dataSet);
 			if(t != null)
 				tools.add(t);
 		}

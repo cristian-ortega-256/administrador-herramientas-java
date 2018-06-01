@@ -40,10 +40,15 @@ public class NotificationSystemTest {
 	}
 	
 	@Test
-	public void testNotificationCreation() {
+	public void testLoanNotificationCreation() {
 		this.notificationSystem.createNotification(this.loanAlarm);
+		assertEquals(this.notificationSystem.getNotifications().size(),1);
+	}
+	
+	@Test
+	public void testRetreatNotificationCreation() {
 		this.notificationSystem.createNotification(this.supplyAlarm);
-		assertEquals(this.notificationSystem.getNotifications().size(),2);
+		assertEquals(this.notificationSystem.getNotifications().size(),1);
 	}
 	
 	@Test
