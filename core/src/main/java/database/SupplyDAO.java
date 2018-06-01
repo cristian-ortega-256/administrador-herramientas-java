@@ -15,8 +15,8 @@ public class SupplyDAO {
 		return parseSupplies(db.Read(query));
 	}
 	
-	public Supply GetOne(String id) throws FilloException {
-		String query = "SELECT * FROM Supplies WHERE ID='" + id + "'";
+	public Supply GetOne(String name) throws FilloException {
+		String query = "SELECT * FROM Supplies WHERE NOMBRE='" + name + "'";
 		ExcelDB db = new ExcelDB();
 		return parseSupply(db.Read(query));
 	}
